@@ -2,17 +2,17 @@
   <div class='top-inner-text', id='button'>
     <h1><%= @target.name %></h1>
 
-    <button class = "btn btn-primary" id="record" >モノマネを録音する</button>
+    <button class = "btn btn-primary" id="rec" >モノマネを録音する</button>
 
     <button class = "btn btn-primary" id="stop" >録音停止</button>
 
     <button class = "btn btn-primary" id="playid" >再生する</button>
 
-    <button class = "btn btn-primary" id="recognition" >採点する</button>
-
      <section class="tape">
 
      <audio id="play" controls></audio>
+     <a id ="download" type="hidden"></a>
+     <button class = "btn btn-primary" id="recognition" >採点する</button>
 
 			<!-- <audio src="/outfoxing.mp3" crossorigin="anonymous" ></audio> -->
       <!-- 			type="audio/mpeg" -->
