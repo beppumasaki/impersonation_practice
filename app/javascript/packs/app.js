@@ -1,3 +1,6 @@
+import axios from 'axios';
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
+
 const downloadLink = document.getElementById('download');
 const playback = document.getElementById('play');
 const result = document.getElementById('result');
@@ -41,7 +44,7 @@ rec.onclick = function() {
               }, 5000);
               stop.addEventListener('click', () => {
                 clearTimeout(timeout_id);
-                console.log('キャンセルしました');
+                console.log('停止しました');
               });
         })
         .catch(function (error) { // error
@@ -143,6 +146,7 @@ let exportWAV = function (audioData) {
 
     let myURL = window.URL || window.webkitURL;
     let url = myURL.createObjectURL(audioBlob);
+    //ここでurlをバックエンド側に作成？その後、xhr.openでurlを取りに行ってる？
     downloadLink.href = url;
 };
 
@@ -154,4 +158,31 @@ let saveAudio = function () {
     downloadLink.download = 'test.wav';
     audioContext.close().then(function () {
     });
+};
+
+result.onclick = function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', document.querySelector('#download').href, true);
+    xhr.responseType = 'blob';
+    xhr.send();
+
+    xhr.onload = function(e) {
+      var myBlob = this.response;
+        // myBlob is now the blob that the object URL pointed to.
+      let formData = new FormData();
+        formData.append('target_id', document.querySelector('#target_id').value)
+        formData.append('impersonation_voice', myBlob, 'voice.wav');
+        formData.append('score', 100);
+
+        axios.post(document.querySelector('#voiceform').action,  formData, {
+        headers: {
+        'content-type': 'multipart/form-data',
+        }
+        }).then(response => {
+          let data = response.data
+          window.location.href = data.url
+          }).catch(error => {
+          console.log(error.response)
+        })
+    } 
 };
