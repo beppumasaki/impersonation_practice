@@ -5,7 +5,7 @@ class TargetsController < ApplicationController
   end
 
   def index
-    @target = Target.find(1)
+    @targets = Target.all
   end
 
 end
