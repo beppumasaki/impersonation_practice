@@ -1,5 +1,6 @@
 import axios from 'axios';
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].getAttribute('content');
 
 const downloadLink = document.getElementById('download');
 const playback = document.getElementById('play');

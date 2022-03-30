@@ -1,20 +1,20 @@
 class ResultsController < ApplicationController
   def show
-    @target = Target.find(params[:id])
+    @target = Target.find(1)
+    @result = Result.find(params[:id])
   end
 
   
   def create
-    @target = Target.find(params[:id])
     @result = Result.new(result_params)
-    @result.score = 100
     @result.save
-    render action: :show
+    @target = Target.find(@result.target_id)
+    render json: { url: target_result_url(@result.target_id, @result.id) }
   end
 
   private
 
   def result_params
-    params.permit(:target_id, :impersonation_voice)
+    params.permit(:target_id, :impersonation_voice, :score)
   end
 end
