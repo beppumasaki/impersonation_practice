@@ -1,0 +1,5 @@
+<div class="text-center">
+  <h2><%= @target.name %>さん本人ですか？</h2>
+  <p>あなたの点数は、<%= @result.score %>点です！</p>
+  <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+</div> 
