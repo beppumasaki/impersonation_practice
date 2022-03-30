@@ -1,7 +1,7 @@
 class ResultsController < ApplicationController
   def show
-    @target = Target.find(1)
     @result = Result.find(params[:id])
+    @target = Target.find(@result.target_id)
   end
 
   
