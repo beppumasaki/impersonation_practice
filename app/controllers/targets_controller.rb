@@ -37,7 +37,7 @@ class TargetsController < ApplicationController
   private
 
   def target_params
-    params.require(:target).permit(:name, :target_voice)
+    params.require(:target).permit(:name, :target_voice, :profile_id)
   end
 
 end
