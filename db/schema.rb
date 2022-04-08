@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_27_052404) do
+ActiveRecord::Schema.define(version: 2022_04_02_034916) do
 
   create_table "results", charset: "utf8mb4", force: :cascade do |t|
     t.string "impersonation_voice", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2022_03_27_052404) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "target_voice"
+    t.string "profile_id"
   end
 
   add_foreign_key "results", "targets"

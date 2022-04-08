@@ -41,8 +41,8 @@ rec.onclick = function() {
             scriptProcessor.onaudioprocess = onAudioProcess;
             scriptProcessor.connect(audioContext.destination);
             timeout_id = setTimeout(() => {
-                stop.click(); // ボタンがクリックされなければ5秒後にstopが押される
-              }, 5000);
+                stop.click(); // ボタンがクリックされなければ8秒後にstopが押される
+              }, 8000);
               stop.addEventListener('click', () => {
                 clearTimeout(timeout_id);
                 console.log('停止しました');
