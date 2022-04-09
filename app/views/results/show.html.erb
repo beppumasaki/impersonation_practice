@@ -1,6 +1,7 @@
 <div class="text-center">
   <h2><%= @target.name %>さん本人ですか？</h2>
   <p>あなたの点数は、<%= @result.score %>点です！</p>
+  <p>あなたにおすすめのモノマネは、<%= @result.match_target%>さんです。挑戦してみてはいかがでしょうか？</p>
   <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
 
   <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
