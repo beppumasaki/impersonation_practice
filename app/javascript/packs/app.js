@@ -173,7 +173,7 @@ result.onclick = function() {
       let formData = new FormData();
         formData.append('target_id', document.querySelector('#target_id').value)
         formData.append('impersonation_voice', myBlob, 'voice.wav');
-        formData.append('score', 100);
+        // formData.append('score', 100);
 
         axios.post(document.querySelector('#voiceform').action,  formData, {
         headers: {
