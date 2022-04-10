@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+
   def show
     @result = Result.find(params[:id])
     @target = Target.find(@result.target_id)
@@ -7,6 +8,7 @@ class ResultsController < ApplicationController
   
   def create
     @result = Result.new(result_params)
+    @target = Target.find(@result.target_id)
     voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + @result.impersonation_voice.url
     connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
       f.request :multipart
@@ -16,17 +18,25 @@ class ResultsController < ApplicationController
     end
 
     #profile_idを5個から選ぶ
+      sample_profiles = Target.where.not(profile_id: @target.profile_id).sample(4)
+  
+      sample_profile_ids = (0..3).map do |num|
+        sample_profiles[num].profile_id
+      end
+      profile_ids = sample_profile_ids << @target.profile_id
+      profile_ids_params = profile_ids.join(',')
+
 
     response = connection.post do |req|
       req.url '/speaker/identification/v2.0/text-independent/profiles/identifySingleSpeaker'
       req.headers = {
-        'Ocp-Apim-Subscription-Key': 'd707afb0596c47968b5e0ed7f263c9be',
+        'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
         'Content-Type': 'audio/wav',
         'Transfer-Encoding': 'chunked'
       }
       req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
       req.params = {
-        profileIds: '42408f55-0250-4679-9950-ab72672f3958,6253e25d-beb4-4bc9-9b42-d26f52547aeb,7df84b53-1c74-435b-a30d-3ee30f0c92b4,d7052ffb-7395-4c43-9286-719772758174,e36dbe84-f60a-45a3-b572-2120bd789a36'
+        profileIds: profile_ids_params
       }
     end
 
@@ -44,8 +54,6 @@ class ResultsController < ApplicationController
         x == @target.profile_id
       end
       
-        # #文字列に変換
-        # same_profile_id_s = same_profile_id*""
 
         #お題のレスポンスが返ってきているprofile_idは何番目か
         same_profile_id_number = profile_id_list.index(same_profile_id*"")
