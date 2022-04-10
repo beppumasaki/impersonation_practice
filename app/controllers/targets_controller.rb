@@ -25,6 +25,29 @@ class TargetsController < ApplicationController
     end
   end
 
+  def destroy
+    @target = Target.find(params[:id])
+   #apiのprofileも削除
+    destroy_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}"
+
+    destroy_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
+      f.request :multipart
+      f.request :json
+      f.response :logger
+      f.adapter Faraday.default_adapter
+    end
+
+    destroy_response = destroy_connection.delete do |destroy_req|
+      destroy_req.url destroy_url
+      destroy_req.headers = {
+        'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey]
+      }
+    end
+
+    @target.destroy
+    redirect_to targets_path
+  end
+
   def create
     @target = Target.new(target_params)
     #profile作成

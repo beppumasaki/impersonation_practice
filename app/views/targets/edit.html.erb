@@ -1,4 +1,14 @@
 <h1>お題の編集</h1>
-<%= render 'form' %>
+    <%= form_with model: @target, local: true do |form| %>
+        <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+        </div>
+    
+        <div>
+        <%= form.submit %>
+        </div>
+    <% end %>
+    <%= link_to "Delete", target_path(@target.id), method: :delete %>
 <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
 
