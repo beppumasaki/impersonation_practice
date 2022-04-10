@@ -63,7 +63,6 @@ class ResultsController < ApplicationController
         @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
     judge(response)
-    byebug
     @result.save
     render json: { url: target_result_url(@result.target_id, @result.id) }
   end
