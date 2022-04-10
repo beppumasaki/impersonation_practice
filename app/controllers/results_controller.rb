@@ -27,11 +27,10 @@ class ResultsController < ApplicationController
       profile_ids_params = profile_ids.join(',')
 
 
-
     response = connection.post do |req|
       req.url '/speaker/identification/v2.0/text-independent/profiles/identifySingleSpeaker'
       req.headers = {
-        'Ocp-Apim-Subscription-Key': 'd707afb0596c47968b5e0ed7f263c9be',
+        'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
         'Content-Type': 'audio/wav',
         'Transfer-Encoding': 'chunked'
       }
@@ -64,6 +63,7 @@ class ResultsController < ApplicationController
         @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
     judge(response)
+    byebug
     @result.save
     render json: { url: target_result_url(@result.target_id, @result.id) }
   end
