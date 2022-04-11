@@ -12,7 +12,17 @@
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'shared/header' %>
+      <div id="nav">
+        <% if logged_in? %>
+          <%= render 'shared/after_login_header' %>
+        <% else %>
+          <%= render 'shared/header' %>
+        <% end %>
+      </div>
+      <div>
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
+      </div>
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'app', 'data-turbolinks-track': 'reload' %>

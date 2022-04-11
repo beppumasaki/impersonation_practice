@@ -1,10 +1,13 @@
 <div class='top-wrapper'>
-  <div class='top-inner-text'>
-    <h1>お題を選ぶ</h1>
+  <div class='top-inner-text text-center'>
+    <h1>モノマネするお題を選んでください</h1>
       <% @targets.each do |target| %>
-        <%= link_to target_path(target), class: 'btn btn-primary' do %>
+        <%= link_to target_path(target), class: 'btn btn-primary mt-3 mb-5' do %>
           <%= target.name %>
         <% end %>
       <% end %>
+    <div>
+      <%= image_tag '22510264.jpg',width: '20%', height: '20%', class:"rounded mx-auto d-block" %>
+    </div>
   </div>
 </div>

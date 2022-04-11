@@ -1,13 +1,14 @@
 <div class='top-wrapper'>
-  <div class='top-inner-text', id='button'>
-    <h1><%= @target.name %></h1>
+  <div class='top-inner-text text-center', id='button'>
+    <div>
+      <h1><%= @target.name %></h1>
+    </div>
 
-    <button class = "btn btn-primary" id="rec" >モノマネを録音する</button>
-
-    <button class = "btn btn-primary" id="stop" >録音停止</button>
-
-    <button class = "btn btn-primary" id="playid" >再生する</button>
-
+    <div class="mt-4 mb-5">
+      <button class = "btn btn-primary" id="rec" >モノマネを録音する</button>
+      <button class = "btn btn-primary" id="stop" >録音停止</button>
+      <button class = "btn btn-primary" id="playid" >再生する</button>
+    </div>
      <section class="tape">
 
      <audio id="play" controls></audio>
