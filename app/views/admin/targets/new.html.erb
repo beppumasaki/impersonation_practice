@@ -1,0 +1,22 @@
+<h1 class="text-center my-5">お題の作成</h1>
+<div class="row justify-content-center text-center">
+  <div class="col-8">
+    <div class="card text-center">
+      <div class="card-body">
+      <%= form_with model: @target, url: admin_targets_path, local: true, method: :post do |f| %>
+        <div class="form-group">
+          <%= f.label :name, class: "text-info" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :target_voice, class: "text-info" %><br>
+          <%= f.file_field :target_voice, class: "form-control" %>
+        </div>
+        <div class="actions">
+          <%= f.submit '新規作成', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

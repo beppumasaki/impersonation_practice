@@ -1,0 +1,8 @@
+<tr>
+  <td class='align-middle'><%= user.id %></td>
+  <td class='align-middle td-pe-none'><%= user.name %></td>
+  <td class='align-middle'><%= user.role %></td>
+  <td class='align-middle'>
+    <%= link_to t('defaults.show'), admin_user_path(user), class: 'btn btn-info' %>
+  </td>
+</tr>
