@@ -23,6 +23,9 @@ let audioData = [];
 let bufferSize = 1024;
 let micBlobUrl = null;
 
+stop.disabled = true;
+play.disabled = true;
+result.disabled = false;
 
 
 rec.onclick = function() {
@@ -52,7 +55,8 @@ rec.onclick = function() {
             console.error('mediaDevice.getUserMedia() error:', error);
             return;
         });
-    
+    stop.disabled = false;
+    result.disabled = false;
     
 };
 
@@ -69,6 +73,9 @@ var onAudioProcess = function (e) {
 //録音の停止
 stop.onclick = function() {
     saveAudio();
+    stop.disabled = true;
+    play.disabled = false;
+    result.disabled = false;
     
 }
 

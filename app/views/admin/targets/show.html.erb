@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <h1>お題詳細</h1>
+      <div class="text-right mb-3">
+        <%= link_to t('defaults.edit'), edit_admin_target_path(@target), class: 'btn btn-success' %>
+        <%= link_to t('defaults.delete'), admin_target_path(@target), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' %>
+      </div>
+      <table class="table table-bordered bg-white">
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:id) %></th>
+          <td><%= @target.id %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:name) %></th>
+          <td class="td-pe-none"><%= @target.name %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:profile_id) %></th>
+          <td><%= @target.profile_id %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:target_voice) %></th>
+          <td><%=audio_tag("#{@target.target_voice.url}", controls: true) %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:created_at) %></th>
+          <td><%= l @target.created_at, format: :long %></td>
+        </tr>
+      </table>
+      <div class="text-left mb-3">
+        <%= link_to t('defaults.back'), admin_targets_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

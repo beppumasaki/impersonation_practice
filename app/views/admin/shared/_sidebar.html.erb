@@ -1,0 +1,23 @@
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <%= link_to "アイコン", admin_root_path, class: "brand-link font-weight-light brand-text" %>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item menu-open">
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to "お題一覧", admin_targets_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問合せ", "#", class: "nav-link" %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
