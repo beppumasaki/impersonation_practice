@@ -1,7 +1,9 @@
-<div class="text-center">
-  <h2><%= @target.name %>さんのモノマネは、<%= @result.score %>点です！</h2>
-  <h3>あなたにおすすめのモノマネは、<%= @result.match_target%>さんです。</h3>
-  <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+<div class='top-wrapper'>
+  <div class='top-inner-text text-center'>
+    <h2><%= @target.name %>さんのモノマネは、<%= @result.score %>点です！</h2>
+    <h3>あなたにおすすめのモノマネは、<%= @result.match_target%>さんです。</h3>
+    <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
 
-  <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
+    <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
+  </div> 
 </div> 

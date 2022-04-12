@@ -91,7 +91,6 @@ class Admin::TargetsController < Admin::BaseController
           }
           enrollments_req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
         end
-        byebug
     
         if @target.save
           redirect_to admin_targets_path

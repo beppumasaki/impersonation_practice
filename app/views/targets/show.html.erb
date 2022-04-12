@@ -18,10 +18,8 @@
      <%= form_with url:target_results_path(@target), id: "voiceform", local: true do |f| %>
        <%= f.hidden_field :target_id, :value => @target.id %>
        <%= f.hidden_field :impersonation_voice  %>
-       <%= f.hidden_field :score, :value => 100 %>
      <% end %>
 
-			
 		</section>
   </div>
 </div>
