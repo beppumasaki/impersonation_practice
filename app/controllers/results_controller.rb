@@ -7,9 +7,10 @@ class ResultsController < ApplicationController
 
   
   def create
-    @result = Result.new(result_params)
+    @result = Result.create(result_params)
     @target = Target.find(@result.target_id)
-    voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + @result.impersonation_voice.url
+    voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + URI.decode_www_form_component("#{@result.impersonation_voice.url}")
+
     connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
       f.request :multipart
       f.request :url_encoded
@@ -69,7 +70,8 @@ class ResultsController < ApplicationController
 
   private
 
+  #voiceに定義したURlがエンコード文字列では認識されないため、newではなくcreateを行った。not null制約つけているので一時的にscoreに値を追加。
   def result_params
-    params.permit(:target_id, :impersonation_voice)
+    params.permit(:target_id, :impersonation_voice, :score)
   end
 end

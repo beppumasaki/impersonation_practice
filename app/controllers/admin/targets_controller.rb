@@ -71,8 +71,10 @@ class Admin::TargetsController < Admin::BaseController
         hash = JSON.parse(create_response.body)
         @target.profile_id = hash["profileId"]
     
+        if @target.save
+
         #profileの登録
-        voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + @target.target_voice.url
+        voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + URI.decode_www_form_component("#{@target.target_voice.url}")
         enrollments_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}/enrollments"
     
         enrollments_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
@@ -91,8 +93,8 @@ class Admin::TargetsController < Admin::BaseController
           }
           enrollments_req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
         end
-    
-        if @target.save
+
+        # if @target.save
           redirect_to admin_targets_path
         else
           render :new
