@@ -12,18 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2022_04_11_013057) do
 
-  create_table "results", charset: "utf8mb4", force: :cascade do |t|
+  create_table "results", force: :cascade do |t|
     t.string "impersonation_voice", null: false
     t.integer "score", null: false
     t.text "body"
-    t.bigint "target_id", null: false
+    t.integer "target_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "match_target"
     t.index ["target_id"], name: "index_results_on_target_id"
   end
 
-  create_table "targets", charset: "utf8mb4", force: :cascade do |t|
+  create_table "targets", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_013057) do
     t.string "profile_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
