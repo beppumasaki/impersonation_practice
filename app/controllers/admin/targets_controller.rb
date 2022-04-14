@@ -74,7 +74,7 @@ class Admin::TargetsController < Admin::BaseController
         if @target.save
 
         #profileの登録
-        voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public/uploads/target/target_voice/22/福山雅治.wav"
+        voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public/uploads/target/target_voice/25/fukuyamamasaharu.wav"
         # voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + URI.decode_www_form_component("#{@target.target_voice.url}")
         enrollments_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}/enrollments"
     
