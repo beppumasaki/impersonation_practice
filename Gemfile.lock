@@ -94,7 +94,12 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
+    excon (0.92.2)
     faraday (2.2.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -102,8 +107,24 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-net_http (2.0.2)
     ffi (1.15.5)
+    fog-aws (3.13.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+    fog-core (2.3.0)
+      builder
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-sass (6.1.1)
       sassc (~> 2.0)
+    formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -302,8 +323,10 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   carrierwave-audio
+  dotenv-rails
   faraday
   faraday-multipart
+  fog-aws
   font-awesome-sass
   jbuilder (~> 2.7)
   jquery-rails
