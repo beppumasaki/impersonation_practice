@@ -8,9 +8,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(user_params[:email], user_params[:password])
-      redirect_to login_path, notice: 'success'
+      redirect_to login_path
+      flash[:success] = "ようこそ！"
     else
-      flash.now[:alert] = 'failure'
+      flash[:danger] = "ログインに失敗しました"
       render :new
     end
   end
