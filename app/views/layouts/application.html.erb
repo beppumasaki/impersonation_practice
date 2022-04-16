@@ -19,10 +19,7 @@
           <%= render 'shared/header' %>
         <% end %>
       </div>
-      <div>
-        <p id="notice"><%= flash[:notice] %></p>
-        <p id="alert"><%= flash[:alert] %></p>
-      </div>
+        <%= render 'shared/flash_message' %>
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_pack_tag 'app', 'data-turbolinks-track': 'reload' %>
