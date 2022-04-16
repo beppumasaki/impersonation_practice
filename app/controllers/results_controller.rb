@@ -9,7 +9,12 @@ class ResultsController < ApplicationController
   def create
     @result = Result.create(result_params)
     @target = Target.find(@result.target_id)
-    voice = URI.open(@result.impersonation_voice.url)
+
+    if Rails.env.production?
+      voice = URI.open(@result.impersonation_voice.url) # 本番環境のみ
+    else
+      voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + URI.decode_www_form_component("#{@result.impersonation_voice.url}") # 本番環境以外
+    end
 
     connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
       f.request :multipart
