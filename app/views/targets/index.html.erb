@@ -1,11 +1,18 @@
 <div class='top-wrapper'>
   <div class='top-inner-text text-center'>
     <h1>モノマネするお題を選んでください</h1>
-      <% @targets.each do |target| %>
-        <%= link_to target_path(target), class: 'btn btn-primary mt-3 mb-5' do %>
-          <%= target.name %>
-        <% end %>
-      <% end %>
+      <div class="dropdown">
+        <a class="btn btn-primary mt-3 mb-5 dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          お題を選択
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <% @targets.each do |target| %>
+              <%= link_to target_path(target), class: 'dropdown-item' do %>
+                <li><%= target.name %></li>
+              <% end %>
+            <% end %>
+        </ul>
+      </div>
     <div>
       <%= image_tag '22510264.jpg',width: '20%', height: '20%', class:"rounded mx-auto d-block" %>
     </div>
