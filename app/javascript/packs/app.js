@@ -7,11 +7,11 @@ const playback = document.getElementById('play');
 const result = document.getElementById('result');
 const start = document.getElementById("start")
 const rec = document.getElementById("rec")
-const stop = document.getElementById("stop")
 const play = document.getElementById("playid")
+const notice = document.getElementById('notice');
 
 // for audio
-let stream = null;  //なしでも良さそう。
+// let stream = null;
 let audio_sample_rate = null;
 let scriptProcessor = null;
 let audioContext = null;
@@ -23,10 +23,15 @@ let audioData = [];
 let bufferSize = 1024;
 let micBlobUrl = null;
 
-stop.disabled = true;
 play.disabled = true;
-result.disabled = false;
+result.disabled = true;
 
+let stopRecording = () => {
+    saveAudio();
+    play.disabled = false;
+    result.disabled = false;
+    notice.innerHTML = '録音完了しました';
+}
 
 rec.onclick = function() {
     navigator.mediaDevices.getUserMedia({
@@ -34,7 +39,9 @@ rec.onclick = function() {
         audio: true
     })
         .then(function (stream) { // promiseのresultをaudioStreamに格納
-            console.log('録音しています');
+            result.disabled = true;
+            play.disabled = true;
+            notice.innerHTML = '〜録音中〜　※10秒間です';
             audioData = [];
             audioContext = new AudioContext();
             audio_sample_rate = audioContext.sampleRate;
@@ -44,20 +51,14 @@ rec.onclick = function() {
             scriptProcessor.onaudioprocess = onAudioProcess;
             scriptProcessor.connect(audioContext.destination);
             timeout_id = setTimeout(() => {
-                stop.click(); // ボタンがクリックされなければ8秒後にstopが押される
-              }, 8000);
-              stop.addEventListener('click', () => {
-                clearTimeout(timeout_id);
-                console.log('停止しました');
-              });
+                stopRecording();
+              }, 10000);
         })
         .catch(function (error) { // error
             console.error('mediaDevice.getUserMedia() error:', error);
             return;
         });
-    stop.disabled = false;
     result.disabled = false;
-    
 };
 
 // save audio data //1024bitのバッファサイズに達するごとにaudioDataにデータを追加する
@@ -70,14 +71,14 @@ var onAudioProcess = function (e) {
     audioData.push(bufferData);
 };
 
-//録音の停止
-stop.onclick = function() {
-    saveAudio();
-    stop.disabled = true;
-    play.disabled = false;
-    result.disabled = false;
-    
-}
+//停止ボタン
+// stop.onclick = function() {
+//     saveAudio();
+//     stop.disabled = true;
+//     play.disabled = false;
+//     result.disabled = false;  
+// }
+
 
 //再生
 play.onclick = function(audioBlob) {
@@ -169,6 +170,7 @@ let saveAudio = function () {
 };
 
 result.onclick = function() {
+    notice.innerHTML = '〜音声処理中〜';
     var xhr = new XMLHttpRequest();
     xhr.open('GET', document.querySelector('#download').href, true);
     xhr.responseType = 'blob';
