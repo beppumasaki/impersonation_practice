@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_013057) do
+ActiveRecord::Schema.define(version: 2022_04_19_233743) do
 
   create_table "results", force: :cascade do |t|
     t.string "impersonation_voice", null: false
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 2022_04_11_013057) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "match_target"
+    t.integer "user_id", default: 1, null: false
     t.index ["target_id"], name: "index_results_on_target_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "targets", force: :cascade do |t|
@@ -43,4 +45,5 @@ ActiveRecord::Schema.define(version: 2022_04_11_013057) do
   end
 
   add_foreign_key "results", "targets"
+  add_foreign_key "results", "users"
 end
