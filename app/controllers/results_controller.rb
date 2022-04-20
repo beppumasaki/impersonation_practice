@@ -64,14 +64,17 @@ class ResultsController < ApplicationController
       same_profile_id = profile_id_list.select do |x|
         x == @target.profile_id
       end
-      
 
-        #お題のレスポンスが返ってきているprofile_idは何番目か
-        same_profile_id_number = profile_id_list.index(same_profile_id*"")
-      
-        @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
+      #お題のレスポンスが返ってきているprofile_idは何番目か
+      same_profile_id_number = profile_id_list.index(same_profile_id*"")
 
-        @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
+      if @result.score <= 0 then
+         @result.score = 0
+      else
+         @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
+      end
+
+      @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
     judge(response)
     @result.save

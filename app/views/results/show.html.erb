@@ -1,13 +1,7 @@
 <div class='top-wrapper'>
   <div class='top-inner-text text-center'>
     <div class='score'>
-      <h2><%= @target.name %>さんのモノマネは、
-        <% if @result.score <= 0 then %>
-          0点です。
-        <% else %>
-          <%= @result.score %>点です！
-        <% end %>
-      </h2>
+      <h2><%= @target.name %>さんのモノマネは、<%= @result.score %>点です！</h2>
     </div>
     <div class='advice'>
       <h2>
