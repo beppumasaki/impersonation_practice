@@ -12,6 +12,7 @@ class ResultsController < ApplicationController
   
   def create
     @result = Result.create(result_params)
+    @result.user_id = current_user.id
     @target = Target.find(@result.target_id)
 
     if Rails.env.production?
@@ -81,6 +82,6 @@ class ResultsController < ApplicationController
 
   #voiceに定義したURlがエンコード文字列では認識されないため、newではなくcreateを行った。not null制約つけているので一時的にscoreに値を追加。
   def result_params
-    params.permit(:target_id, :impersonation_voice, :score)
+    params.permit(:target_id, :impersonation_voice, :score, :user_id)
   end
 end
