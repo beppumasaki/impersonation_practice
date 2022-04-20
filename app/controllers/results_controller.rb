@@ -9,6 +9,12 @@ class ResultsController < ApplicationController
    @results = Result.where(user_id: current_user.id)
   end
 
+  def destroy
+    @result = Result.find(params[:id])
+    @result.destroy
+    redirect_to user_results_path(current_user)
+  end
+
   
   def create
     @result = Result.create(result_params)
