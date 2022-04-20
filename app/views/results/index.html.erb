@@ -1,1 +1,25 @@
-<p>user毎の結果表示画面</p>
+<div class="container mb-5 pt-2">
+  <h1>採点履歴</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">日時</th>
+          <th scope="col">点数</th>
+          <th scope="col">お題</th>
+          <th scope="col">詳細</th>
+        </tr>
+        </thead>
+        <tbody>
+          <%= render @results %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <!-- ページネーション -->
+    </div>
+  </div>
+</div>

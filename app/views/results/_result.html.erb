@@ -1,0 +1,8 @@
+<tr>
+  <td class='align-middle'><%= result.created_at %></td>
+  <td class='align-middle td-pe-none'><%= result.score %></td>
+  <td class='align-middle'><%= Target.find(result.target_id).name %></td>
+  <td class='align-middle'>
+    <%= link_to "詳細", user_result_path(current_user, result), class: 'btn btn-info' %>
+  </td>
+</tr>
