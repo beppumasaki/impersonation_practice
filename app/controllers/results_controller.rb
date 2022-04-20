@@ -5,6 +5,10 @@ class ResultsController < ApplicationController
     @target = Target.find(@result.target_id)
   end
 
+  def index
+   @results = Result.where(user_id: current_user.id)
+  end
+
   
   def create
     @result = Result.create(result_params)

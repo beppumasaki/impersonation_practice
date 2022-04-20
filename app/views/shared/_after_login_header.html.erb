@@ -4,13 +4,14 @@
     <%= link_to root_path do %>
       <%= image_tag 'logo_mo.png', class:'header-logo', size: '50x50' %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "採点履歴", user_results_path(current_user), class:"nav-link" %>
         </li>
       </ul>
     </div>
