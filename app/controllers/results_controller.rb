@@ -3,11 +3,36 @@ class ResultsController < ApplicationController
   def show
     @result = Result.find(params[:id])
     @target = Target.find(@result.target_id)
+    @comments = @result.comments
+    @comment = Comment.new
+
+  end
+
+  def index
+   @results = Result.where(user_id: current_user.id)
+  end
+
+  def edit
+    @result = Result.find(params[:id])
+    @target = Target.find(@result.target_id)
+  end
+
+  def destroy
+    @result = Result.find(params[:id])
+    @result.destroy
+    redirect_to user_results_path(current_user)
+  end
+
+  def update
+    @result = Result.find(params[:id])
+    @result.update(update_result_params)
+    redirect_to user_results_path(current_user)
   end
 
   
   def create
     @result = Result.create(result_params)
+    @result.user_id = current_user.id if current_user
     @target = Target.find(@result.target_id)
 
     if Rails.env.production?
@@ -59,14 +84,14 @@ class ResultsController < ApplicationController
       same_profile_id = profile_id_list.select do |x|
         x == @target.profile_id
       end
-      
 
-        #お題のレスポンスが返ってきているprofile_idは何番目か
-        same_profile_id_number = profile_id_list.index(same_profile_id*"")
-      
-        @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
+      #お題のレスポンスが返ってきているprofile_idは何番目か
+      same_profile_id_number = profile_id_list.index(same_profile_id*"")
 
-        @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
+      @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
+      @result.score = 0 if @result.score < 0
+
+      @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
     judge(response)
     @result.save
@@ -77,6 +102,12 @@ class ResultsController < ApplicationController
 
   #voiceに定義したURlがエンコード文字列では認識されないため、newではなくcreateを行った。not null制約つけているので一時的にscoreに値を追加。
   def result_params
-    params.permit(:target_id, :impersonation_voice, :score)
+    params.permit(:target_id, :impersonation_voice, :score, :user_id)
+    # params.require(:result).permit(:target_id, :impersonation_voice, :score, :user_id, :body, :state)
   end
+
+  def update_result_params
+    params.require(:result).permit(:body, :state)
+  end
+
 end

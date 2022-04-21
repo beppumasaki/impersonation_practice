@@ -6,10 +6,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    resources :results, only: %i[index show edit update destroy] do
+      resources :comments, only: %i[create destroy]
+    end
+  end
+
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
+  get 'ranks', to: 'ranks#index'
 
 
   namespace :admin do

@@ -1,0 +1,11 @@
+<tr>
+  <td class='align-middle'><%= result.created_at %></td>
+  <td class='align-middle td-pe-none'><%= result.score %>点</td>
+  <td class='align-middle'><%= Target.find(result.target_id).name %></td>
+  <td class='align-middle td-pe-none'><%= result.state %></td>
+  <td class='align-middle'>
+    <%= link_to "詳細", user_result_path(current_user, result), class: 'btn btn-info' %>
+    <%= link_to "削除", user_result_path(current_user, result), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' %>
+    <%= link_to "編集", edit_user_result_path(current_user, result), class: 'btn btn-info' %>
+  </td>
+</tr>

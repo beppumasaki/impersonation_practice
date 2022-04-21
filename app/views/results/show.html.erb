@@ -1,25 +1,39 @@
 <div class='top-wrapper'>
   <div class='top-inner-text text-center'>
     <div class='score'>
-      <h2><%= @target.name %>さんのモノマネは、
-        <% if @result.score <= 0 then %>
-          0点です。
-        <% else %>
-          <%= @result.score %>点です！
-        <% end %>
-      </h2>
+      <h2><%= @target.name %>：<%= @result.score %>点</h2>
     </div>
     <div class='advice'>
       <h2>
         <% if @result.match_target == @target.name then %>
          　その調子で頑張りましょう！
         <% else %>
-         　あなたにおすすめのモノマネは、<%= @result.match_target%>さんです。
+         　おすすめのモノマネ：<%= @result.match_target%>
         <% end %>
       </h2>
     </div>
     <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
 
+    <div class='body'>
+      <h4>ボディ↓</h4>
+      <p><%= @result.body %></p>
+    </div>
+
+  <% if current_user %>
+    <h2>コメント一覧</h2>
+      <% @comments.each do |c| %>
+        <div>
+          <%= c.body %>
+        </div>
+      <% end %>
+
+      <%= form_with url: user_result_comments_path(current_user, @result), method: :post do |f| %>
+        <%= f.text_field :body %>
+        <br>
+        <%= f.submit 'コメントする' %>
+      <% end %>
+  <% end %>
+
     <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
   </div> 
-</div> 
+</div>   
