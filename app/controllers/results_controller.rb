@@ -9,9 +9,20 @@ class ResultsController < ApplicationController
    @results = Result.where(user_id: current_user.id)
   end
 
+  def edit
+    @result = Result.find(params[:id])
+    @target = Target.find(@result.target_id)
+  end
+
   def destroy
     @result = Result.find(params[:id])
     @result.destroy
+    redirect_to user_results_path(current_user)
+  end
+
+  def update
+    @result = Result.find(params[:id])
+    @result.update(update_result_params)
     redirect_to user_results_path(current_user)
   end
 
@@ -92,5 +103,11 @@ class ResultsController < ApplicationController
   #voiceに定義したURlがエンコード文字列では認識されないため、newではなくcreateを行った。not null制約つけているので一時的にscoreに値を追加。
   def result_params
     params.permit(:target_id, :impersonation_voice, :score, :user_id)
+    # params.require(:result).permit(:target_id, :impersonation_voice, :score, :user_id, :body, :state)
   end
+
+  def update_result_params
+    params.require(:result).permit(:body, :state)
+  end
+
 end
