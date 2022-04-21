@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_223929) do
+ActiveRecord::Schema.define(version: 2022_04_21_010721) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "result_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["result_id"], name: "index_comments_on_result_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "results", force: :cascade do |t|
     t.string "impersonation_voice", null: false
@@ -45,6 +55,8 @@ ActiveRecord::Schema.define(version: 2022_04_20_223929) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "comments", "results"
+  add_foreign_key "comments", "users"
   add_foreign_key "results", "targets"
   add_foreign_key "results", "users"
 end

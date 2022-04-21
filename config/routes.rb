@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root 'static_pages#top'
 
   resources :users, only: %i[new create] do
-    resources :results, only: %i[index show edit update destroy]
+    resources :results, only: %i[index show edit update destroy] do
+      resources :comments, only: %i[create destroy]
+    end
   end
 
   get 'login', to: 'user_sessions#new'

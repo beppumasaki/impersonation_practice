@@ -3,6 +3,9 @@ class ResultsController < ApplicationController
   def show
     @result = Result.find(params[:id])
     @target = Target.find(@result.target_id)
+    @comments = @result.comments
+    @comment = Comment.new
+
   end
 
   def index
@@ -29,7 +32,7 @@ class ResultsController < ApplicationController
   
   def create
     @result = Result.create(result_params)
-    @result.user_id = current_user.id
+    @result.user_id = current_user.id if current_user
     @target = Target.find(@result.target_id)
 
     if Rails.env.production?
@@ -85,11 +88,11 @@ class ResultsController < ApplicationController
       #お題のレスポンスが返ってきているprofile_idは何番目か
       same_profile_id_number = profile_id_list.index(same_profile_id*"")
 
-      if @result.score <= 0 then
-         @result.score = 0
-      else
+      # if @result.score <= 0 then
+      #    @result.score = 0
+      # else
          @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
-      end
+      # end
 
       @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
