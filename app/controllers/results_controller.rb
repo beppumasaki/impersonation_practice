@@ -88,11 +88,8 @@ class ResultsController < ApplicationController
       #お題のレスポンスが返ってきているprofile_idは何番目か
       same_profile_id_number = profile_id_list.index(same_profile_id*"")
 
-      # if @result.score <= 0 then
-      #    @result.score = 0
-      # else
-         @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
-      # end
+      @result.score = hash["profilesRanking"][same_profile_id_number]["score"]*140
+      @result.score = 0 if @result.score < 0
 
       @result.match_target = Target.find_by(profile_id: hash["profilesRanking"][0]["profileId"]).name
     end
