@@ -1,7 +1,11 @@
+import axios from 'axios';
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].getAttribute('content');
+
 const downloadLink = document.getElementById('download');
 const playback = document.getElementById('play');
 const result = document.getElementById('result');
-const opposite = document.getElementById('oppositevoice');
+const impersonation = document.getElementById('impersonationvoice');
 const start = document.getElementById("start")
 const rec = document.getElementById("rec")
 const stop = document.getElementById("stop")
@@ -49,13 +53,12 @@ rec.onclick = function() {
             mediastreamsource.connect(scriptProcessor);
             scriptProcessor.onaudioprocess = onAudioProcess;
             scriptProcessor.connect(audioContext.destination);
-            opposite.play();
+            impersonation.play();
             rec.disabled = true;
             stop.disabled = false;
             timeout_id = setTimeout(() => {
                 stop.click(); // ボタンがクリックされなければ30秒後にstopが押される
-              }, 30000);
-              notice.innerHTML = '録音完了しました';
+              }, 10000);
         })
         .catch(function (error) { // error
             console.error('mediaDevice.getUserMedia() error:', error);
@@ -77,10 +80,11 @@ var onAudioProcess = function (e) {
 //停止ボタン
 stop.onclick = function() {
     saveAudio();
-    opposite.pause();
+    impersonation.pause();
     stop.disabled = true;
     play.disabled = false;
-    rec.disabled = false; 
+    rec.disabled = false;
+    result.disabled = false;
     notice.innerHTML = '録音完了しました';
 }
 
@@ -174,30 +178,31 @@ let saveAudio = function () {
     });
 };
 
-// result.onclick = function() {
-//     notice.innerHTML = '〜音声処理中〜';
-//     var xhr = new XMLHttpRequest();
-//     xhr.open('GET', document.querySelector('#download').href, true);
-//     xhr.responseType = 'blob';
-//     xhr.send();
+result.onclick = function() {
+    notice.innerHTML = '〜音声処理中〜';
+    var xhr = new XMLHttpRequest();
+    // バックエンドから情報を取ってきてる？
+    xhr.open('GET', document.querySelector('#download').href, true);
+    xhr.responseType = 'blob';
+    xhr.send();
 
-//     xhr.onload = function(e) {
-//       var myBlob = this.response;
-//         // myBlob is now the blob that the object URL pointed to.
-//       let formData = new FormData();
-//         formData.append('target_id', document.querySelector('#target_id').value)
-//         formData.append('impersonation_voice', myBlob, 'voice.wav');
-//         formData.append('score', 0);
+    xhr.onload = function(e) {
+      var myBlob = this.response;
+        // myBlob is now the blob that the object URL pointed to.
+      let formData = new FormData();
+        formData.append('result_id', document.querySelector('#result_id').value)
+        formData.append('user_id', document.querySelector('#user_id').value)
+        formData.append('collaboration_voice', myBlob, 'voice.wav');
 
-//         axios.post(document.querySelector('#voiceform').action,  formData, {
-//         headers: {
-//         'content-type': 'multipart/form-data',
-//         }
-//         }).then(response => {
-//           let data = response.data
-//           window.location.href = data.url
-//           }).catch(error => {
-//           console.log(error.response)
-//         })
-//     } 
-// };
+        axios.post(document.querySelector('#voiceform').action,  formData, {
+        headers: {
+        'content-type': 'multipart/form-data',
+        }
+        }).then(response => {
+          let data = response.data
+          window.location.href = data.url
+          }).catch(error => {
+          console.log(error.response)
+        })
+    } 
+};
