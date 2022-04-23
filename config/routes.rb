@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create] do
     resources :results, only: %i[index show edit update destroy] do
       resources :comments, only: %i[create destroy]
+      resources :collaborations, only: %i[create destroy new index show]
     end
   end
+
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

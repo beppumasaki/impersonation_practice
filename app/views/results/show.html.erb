@@ -35,5 +35,6 @@
   <% end %>
 
     <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
+    <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'btn btn-info' %>
   </div> 
 </div>   
