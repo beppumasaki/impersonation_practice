@@ -8,7 +8,7 @@ class CollaborationsController < ApplicationController
     def show
       if params[:id] == "undefined"
         @result = Result.find(params[:result_id])
-        redirect_to user_result_collaborations_path(current_user, @result)
+        redirect_to user_collaborations_path(current_user)
       else
         #ここから処理記載
        redirect_to root_path

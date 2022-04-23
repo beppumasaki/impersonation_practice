@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   root 'static_pages#top'
 
   resources :users, only: %i[new create show edit update] do
+    resources :collaborations, only: %i[index]
     resources :results, only: %i[index show edit update destroy] do
+      resources :collaborations, only: %i[create destroy new show]
       resources :comments, only: %i[create destroy]
-      resources :collaborations, only: %i[create destroy new index show]
     end
   end
 

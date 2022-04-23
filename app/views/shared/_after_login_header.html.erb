@@ -1,5 +1,5 @@
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <%= link_to root_path do %>
       <%= image_tag 'logo_mo.png', class:'header-logo', size: '50x50' %>
@@ -9,9 +9,6 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "採点履歴", user_results_path(current_user), class:"nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "ランキング", ranks_path, class: "nav-link" %>

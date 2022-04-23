@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <h1 class="float-left mb-5">プロフィール</h1>
-      <%= link_to t('defaults.edit'), edit_user_path, class: 'btn btn-success float-right' %>
+        <%= link_to "編集", edit_user_path, class: 'btn btn-success float-right' %>
+        <%= link_to "コラボ履歴", user_collaborations_path(current_user), class:"btn btn-primary float-right mr-3" %>
+        <%= link_to "採点履歴", user_results_path(current_user), class:"btn btn-primary float-right mr-3" %>
       <table class="table">
         <tr>
           <th scope="row">メールアドレス</th>
