@@ -1,1 +1,21 @@
-<h1>index</h1>
+<div class="container mb-5 pt-2">
+  <h1>コラボ履歴</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">日時</th>
+          <th scope="col">コラボid</th>
+          <th scope="col">state</th>
+          <th scope="col">詳細</th>
+        </tr>
+        </thead>
+        <tbody>
+          <%= render @collaborations %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+</div>
