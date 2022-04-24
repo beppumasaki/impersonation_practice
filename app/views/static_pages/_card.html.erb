@@ -1,0 +1,9 @@
+<div class="card mx-auto" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= Target.find(card.target_id).name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted text-right"><%= card.score %>点</h6>
+      <p class="card-text">by <%= User.find(card.user_id).name %></p>
+      <%=audio_tag("#{card.impersonation_voice.url}", controls: true) %>
+      <p class="card-text"><%= card.body %></p>
+    </div>
+</div>
