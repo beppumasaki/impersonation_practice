@@ -1,0 +1,32 @@
+<div class='top-wrapper'>
+    <div class='top-inner-text text-center', id='button'>
+      <div>
+        <h1>コラボ</h1>
+      </div>
+      <div>
+        <p class = "mt-3" id="notice" >録音ボタンを押してコラボしよう！</p>
+      </div>
+  
+      <div class="mt-4 mb-5">
+        <button class = "btn btn-primary mr-2" id="rec" >録音する</button>
+        <button class = "btn btn-primary mr-2" id="stop" >停止する</button>
+        <button class = "btn btn-primary " id="playid" >再生する</button>
+
+      </div>
+       <section class="tape">
+  
+       <%= audio_tag("#{@result.impersonation_voice.url}", id: "impersonationvoice") %>
+       <audio id="play" controls></audio><br>
+       <a id ="download" href="#" type="hidden"></a>
+  
+       <button class = "btn btn-danger " id="result" >保存する</button>
+       <%= form_with url:user_result_collaborations_path(current_user, @result), id: "voiceform", local: true do |f| %>
+        <%= f.hidden_field :result_id, :value => @result.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :collaboration_voice  %>
+       <% end %>
+  
+      </section>
+    </div>
+  </div>
+  <%= javascript_pack_tag 'collaboration', 'data-turbolinks-track': 'reload' %>

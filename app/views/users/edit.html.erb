@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+  <h3>プロフィール編集</h3>
+    <div class="col-md-5 offset-md-1">
+      <%= form_with model: @user, url: user_path, local: true do |f| %>
+        <div>
+        <i class="fas fa-user"></i>
+        <%= f.label :user, User.human_attribute_name(:name) %>
+        </div>
+        <div class="input-group mb-3">
+        <%= f.text_field :name, class: "form-control mb-3", placeholder: :name %>
+        </div>
+        <div>
+        <i class="fas fa-envelope"></i>
+        <%= f.label :email, User.human_attribute_name(:email) %>
+        </div>
+        <div class="input-group mb-3">
+        <%= f.text_field :email, class: "form-control mb-3", placeholder: :email %>
+        </div>
+        <div>
+        <i class="fas fa-lock"></i>
+        <%= f.label :password, User.human_attribute_name(:password) %>
+        </div>
+        <div class="input-group mb-3">
+        <%= f.password_field :password, class: "form-control mb-3", placeholder: :password %>
+        </div>
+
+        <div>
+        <i class="fas fa-lock"></i>
+        <%= f.label :password, User.human_attribute_name(:password_confirmation) %>
+        </div>
+        <div class="input-group mb-3">
+        <%= f.password_field :password_confirmation, class: "form-control mb-3", placeholder: :password_confirmation %>
+        </div>
+
+        <div class="row m-0 mt-4 mb-2">
+        <%= f.submit "更新", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+        <div class="select-text mt-3">
+          <%= link_to "プロフィールに戻る", user_path, class:"button" %>
+        </div>
+</div>
+
+
+  

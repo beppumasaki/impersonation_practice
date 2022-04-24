@@ -1,0 +1,30 @@
+<div class='top-wrapper'>
+  <div class='top-inner-text text-center'>
+    <div class='title'>
+      <h2><%= @collaboration.title %></h2>
+    </div>
+    <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
+  </div> 
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <%= form_with model: @collaboration, url: user_result_collaboration_path(@collaboration), local: true do |f| %>
+            <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_field :body, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+            <%= f.label :state %>
+            <%= f.select :state, Collaboration.states.invert, {}, class: 'form-control' %>
+            </div>
+            <%= f.submit "更新", class: 'btn btn-primary' %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div> 

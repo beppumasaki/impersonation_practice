@@ -1,0 +1,15 @@
+<div class='top-wrapper'>
+  <div class='top-inner-text text-center'>
+    <div class='title'>
+      <h2><%= @collaboration.title %></h2>
+    </div>
+      <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
+
+    <div class='body'>
+      <h4>ボディ↓</h4>
+      <p><%= @collaboration.body %></p>
+    </div>
+
+    <h4><%= link_to 'コラボ一覧へ戻る', user_collaborations_path(current_user) %></h4>
+  </div> 
+</div>   
