@@ -11,7 +11,10 @@ class CollaborationsController < ApplicationController
         redirect_to user_collaborations_path(current_user)
       else
         #ここから処理記載
-       redirect_to root_path
+          @collaboration = Collaboration.find(params[:id])
+          @result = Result.find(@collaboration.result_id)
+          # @comments = @result.comments
+          # @comment = Comment.new
       end
     end
 
