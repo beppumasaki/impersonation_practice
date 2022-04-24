@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_235404) do
+ActiveRecord::Schema.define(version: 2022_04_24_223601) do
 
   create_table "collaborations", force: :cascade do |t|
     t.string "title"
@@ -68,10 +68,19 @@ ActiveRecord::Schema.define(version: 2022_04_22_235404) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "collaborations", "results"
   add_foreign_key "collaborations", "users"
   add_foreign_key "comments", "results"
   add_foreign_key "comments", "users"
   add_foreign_key "results", "targets"
   add_foreign_key "results", "users"
+  add_foreign_key "votes", "users"
 end
