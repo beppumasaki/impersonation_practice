@@ -26,22 +26,22 @@
 
 
    <div class="middle-wrapper text-muted">
-    <h2 class="middle_title text-center mt-5 pb-4">本アプリでできること</h2>
-    <div class="contents">
-      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-          <div class="p-2 bd-highlight">
-            <div class="text-contents mt-5">
-              <h2 class="top-impersonation">モノマネの完成度を点数化</h2>
-              <p>モノマネが得意な人は腕試し、苦手な人は練習として使えます。<br>結果画面では、あなたの音声データからおすすめのお題を提示します。</p>
+    <h2 class="middle_title text-center mt-5 pb-4">本アプリの使い方</h2>
+      <div class="contents">
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+            <div class="p-2 bd-highlight">
+              <div class="text-contents mt-5">
+                <h2 class="top-impersonation">モノマネの完成度を点数化</h2>
+                <p>モノマネが得意な人は腕試し、苦手な人は練習として使えます。<br>結果画面では、あなたの音声データからおすすめのお題を提示します。</p>
+              </div>
             </div>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div class="image-contents">
-              <%= image_tag 'impersonation.png',size: '250x250' %>
+            <div class="p-2 bd-highlight">
+              <div class="image-contents">
+                <%= image_tag 'score.png',size: '250x250' %>
+              </div>
             </div>
-          </div>
+        </div>
       </div>
-    </div>
 
 
     <div class="contents">
@@ -53,10 +53,24 @@
           </div>
           <div class="p-2 bd-highlight">
             <div class="text-contents mt-5">
-              <h2 class="top-collaboration">他のユーザーのモノマネとコラボ</h2>
+              <h2 class="top-collaboration">みんなのモノマネとコラボ</h2>
               <p>公開されてるモノマネ音声には、更に声を重ねることができます。<br>ハモリの練習にも使えます。</p>
             </div>
           </div>
-          
       </div>
-    </div>
+
+          <div class="contents">
+            <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+                <div class="p-2 bd-highlight">
+                  <div class="text-contents mt-5">
+                    <h2 class="top-impersonation">みんなの投票でお題を増やす</h2>
+                    <p>モノマネのお題を追加したい場合は、お題総選挙から登録をお願いします。<br>毎月、投票数の多かった上位5つのお題を追加します。</p>
+                  </div>
+                </div>
+                <div class="p-2 bd-highlight">
+                  <div class="image-contents">
+                    <%= image_tag 'vote.png',size: '250x250' %>
+                  </div>
+                </div>
+            </div>
+          </div>
