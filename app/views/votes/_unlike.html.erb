@@ -1,0 +1,1 @@
+<td><%= link_to 'UnLike', vote_likes_path(vote_id: vote.id, id: current_user.likes.find_by(vote_id: vote.id)), method: :delete %></td>

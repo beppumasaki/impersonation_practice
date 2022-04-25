@@ -19,6 +19,25 @@
 // }
 nav.navbar {
     min-height: 38px;
-    background-color: #97BCF0;
+    background-color: #1F80DA;
     background-image: none;
   }
+  
+
+.cards-wrapper {
+  min-height: 38px;
+  background-color: #97BCF0;
+  background-image: none;
+}
+
+footer {
+  min-height: 38px;
+  background-color: #1F80DA;
+  background-image: none;
+}
+
+.btn-primary {
+  background: #4A6E9D; //ボタンの背景色
+  color: #EFF0F4; //ボタンのテキストの色
+  border-color: #4A6E9D;
+}

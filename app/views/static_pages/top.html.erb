@@ -1,15 +1,62 @@
 <div class='top-wrapper'>
   <div class="text-center">
    <div class="mt-5 mb-4">
-    <%= image_tag 'logo_monomanebook.png', class:'logo'%>
+    <%= image_tag 'monomanew.png', class:'logo'%>
+    <%= image_tag 'monomane_man.png', class:'logo', size: '250x350' %>
    </div>
    <div>
-      <%= link_to "はじめる", targets_path, class: "btn btn-primary" %>
-   </div>
-
-   <div >
-
+      <%= link_to "はじめる", targets_path, class: "btn btn-primary btn-lg mb-5" %>
    </div>
   </div>
 </div>
 
+<div class="cards-wrapper text-muted">
+  <div class="top-cards pt-5 pb-4">
+  <h3 class="text-center mt-3 mb-4">モノマネランキングTOP3</h3>
+    <!-- カード一覧 -->
+      <div class="row">
+        <% if @cards.present? %>
+          <%= render partial: 'card', collection: @cards %>
+        <% else %>
+          <p>公開されているモノマネはありません</p>
+        <% end %>
+      </div>
+  </div>
+ </div>
+
+
+   <div class="middle-wrapper text-muted">
+    <h2 class="middle_title text-center mt-5 pb-4">本アプリでできること</h2>
+    <div class="contents">
+      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+          <div class="p-2 bd-highlight">
+            <div class="text-contents mt-5">
+              <h2 class="top-impersonation">モノマネの完成度を点数化</h2>
+              <p>モノマネが得意な人は腕試し、苦手な人は練習として使えます。<br>結果画面では、あなたの音声データからおすすめのお題を提示します。</p>
+            </div>
+          </div>
+          <div class="p-2 bd-highlight">
+            <div class="image-contents">
+              <%= image_tag 'impersonation.png',size: '250x250' %>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="contents">
+      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+          <div class="p-2 bd-highlight">
+            <div class="image-contents">
+             <%= image_tag 'collaboration.png', size: '250x250' %>
+            </div>
+          </div>
+          <div class="p-2 bd-highlight">
+            <div class="text-contents mt-5">
+              <h2 class="top-collaboration">他のユーザーのモノマネとコラボ</h2>
+              <p>公開されてるモノマネ音声には、更に声を重ねることができます。<br>ハモリの練習にも使えます。</p>
+            </div>
+          </div>
+          
+      </div>
+    </div>

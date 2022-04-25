@@ -1,0 +1,8 @@
+ <a class="card-link">
+    <p>総数<%= Like.where(vote_id: vote.id).count %></p>
+    <% if current_user.like?(vote) %>
+    <%= render 'unlike', { vote: vote } %>
+    <% else %>
+    <%= render 'like', { vote: vote } %>
+    <% end %>
+ </a>
