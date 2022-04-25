@@ -1,28 +1,29 @@
-<div class='top-wrapper'>
-  <div class="text-center">
-   <div class="mt-5 mb-4">
-    <%= image_tag 'monomanew.png', class:'logo'%>
-    <%= image_tag 'monomane_man.png', class:'logo', size: '250x350' %>
-   </div>
-   <div>
-      <%= link_to "はじめる", targets_path, class: "btn btn-primary btn-lg mb-5" %>
-   </div>
-  </div>
-</div>
-
-<div class="cards-wrapper text-muted">
-  <div class="top-cards pt-5 pb-4">
-  <h3 class="text-center mt-3 mb-4">モノマネランキングTOP3</h3>
-    <!-- カード一覧 -->
-      <div class="row">
-        <% if @cards.present? %>
-          <%= render partial: 'card', collection: @cards %>
-        <% else %>
-          <p>公開されているモノマネはありません</p>
-        <% end %>
+<main>
+    <div class='top-wrapper'>
+      <div class="text-center">
+        <div class="mt-5 mb-4">
+          <%= image_tag 'monomanew.png', class:'logo'%>
+          <%= image_tag 'monomane_man.png', class:'logo', size: '250x350' %>
+        </div>
+        <div>
+            <%= link_to "はじめる", targets_path, class: "btn btn-primary btn-lg mb-5" %>
+        </div>
       </div>
-  </div>
- </div>
+    </div>
+
+    <div class="cards-wrapper text-muted">
+      <div class="top-cards pt-5 pb-4">
+      <h3 class="text-center mt-3 mb-4">モノマネランキングTOP3</h3>
+        <!-- カード一覧 -->
+          <div class="row">
+            <% if @cards.present? %>
+              <%= render partial: 'card', collection: @cards %>
+            <% else %>
+              <p>公開されているモノマネはありません</p>
+            <% end %>
+          </div>
+      </div>
+    </div>
 
 
    <div class="middle-wrapper text-muted">
@@ -44,33 +45,36 @@
       </div>
 
 
-    <div class="contents">
-      <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-          <div class="p-2 bd-highlight">
-            <div class="image-contents">
-             <%= image_tag 'collaboration.png', size: '250x250' %>
+      <div class="contents">
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+            <div class="p-2 bd-highlight">
+              <div class="image-contents">
+              <%= image_tag 'collaboration.png', size: '250x250' %>
+              </div>
             </div>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div class="text-contents mt-5">
-              <h2 class="top-collaboration">みんなのモノマネとコラボ</h2>
-              <p>公開されてるモノマネ音声には、更に声を重ねることができます。<br>ハモリの練習にも使えます。</p>
+            <div class="p-2 bd-highlight">
+              <div class="text-contents mt-5">
+                <h2 class="top-collaboration">みんなのモノマネとコラボ</h2>
+                <p>公開されてるモノマネ音声には、更に声を重ねることができます。<br>ハモリの練習にも使えます。</p>
+              </div>
             </div>
-          </div>
+        </div>
       </div>
 
-          <div class="contents">
-            <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-                <div class="p-2 bd-highlight">
-                  <div class="text-contents mt-5">
-                    <h2 class="top-impersonation">みんなの投票でお題を増やす</h2>
-                    <p>モノマネのお題を追加したい場合は、お題総選挙から登録をお願いします。<br>毎月、投票数の多かった上位5つのお題を追加します。</p>
-                  </div>
-                </div>
-                <div class="p-2 bd-highlight">
-                  <div class="image-contents">
-                    <%= image_tag 'vote.png',size: '250x250' %>
-                  </div>
-                </div>
+      <div class="contents">
+        <div class="d-flex flex-row bd-highlight mb-5 justify-content-center">
+            <div class="p-2 bd-highlight">
+              <div class="text-contents mt-5">
+                <h2 class="top-impersonation">みんなの投票でお題を増やす</h2>
+                <p>モノマネのお題を追加したい場合は、お題総選挙から登録をお願いします。<br>毎月、投票数の多かった上位5つのお題を追加します。</p>
+              </div>
             </div>
-          </div>
+            <div class="p-2 bd-highlight">
+              <div class="image-contents">
+                <%= image_tag 'vote.png',size: '250x250' %>
+              </div>
+            </div>
+        </div>
+      </div> 
+   </div>
+</main>
