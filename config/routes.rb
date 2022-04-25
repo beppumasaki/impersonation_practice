@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :votes, only: %i[new create destroy index]
+  resources :votes, only: %i[new create destroy index] do
+    resource :likes, only: [:create, :destroy]
+  end
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

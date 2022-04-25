@@ -1,0 +1,7 @@
+ <a class="card-link">
+    <% if current_user.like?(vote) %>
+    <%= render 'unlike', { vote: vote } %>
+    <% else %>
+    <%= render 'like', { vote: vote } %>
+    <% end %>
+ </a>

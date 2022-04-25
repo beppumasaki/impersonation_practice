@@ -21,6 +21,10 @@ class VotesController < ApplicationController
     def destroy
     end
 
+    def likes
+      @votes = current_user.like_votes
+    end
+
     private
 
     def vote_params
