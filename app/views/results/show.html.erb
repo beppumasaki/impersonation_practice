@@ -1,42 +1,45 @@
-<div class="container">  
-  <div class='top-wrapper'>
-    <div class='top-inner-text text-center'>
-      <div class='score'>
-        <h2><%= @target.name %>：<%= @result.score %>点</h2>
-      </div>
-      <div class='advice'>
-        <h2>
-          <% if @result.match_target == @target.name then %>
-          その調子で頑張りましょう！
-          <% else %>
-          おすすめのモノマネ：<%= @result.match_target%>
-          <% end %>
-        </h2>
-      </div>
-      <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+      <h1>結果詳細</h1>
+      <!-- 掲示板内容 -->
+      <article class="card">
+        <div class="card-body">
+        <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' %>
+          <div class='row'>
+            <div class='col-md-9'>
+              <h1 style='display: inline;'><%= @target.name %>：<%= @result.score %>点</h1>
 
-      <div class='body'>
-        <h4>ボディ↓</h4>
-        <p><%= @result.body %></p>
-      </div>
+              <div class='advice'>
+                <h4>
+                  <% if @result.match_target == @target.name then %>
+                  その調子で頑張りましょう！
+                  <% else %>
+                  おすすめ：<%= @result.match_target%>
+                  <% end %>
+                </h4>
+              </div>
+              <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+
+              <ul class="list-inline">
+                <li class="list-inline-item">by <%= @user.name %></li>
+                <li class="list-inline-item"><%= @result.created_at %></li>
+              </ul>
+            </div>
+          </div>
+          <p><%= simple_format(@result.body) %></p>
+        </div>
+      </article>
+    </div>
+  </div>
 
       <% if current_user %>
         <h2>コメント一覧</h2>
-          <% @comments.each do |c| %>
-            <div>
-              <%= c.body %>
-            </div>
-          <% end %>
-
-          <%= form_with url: user_result_comments_path(current_user, @result), method: :post do |f| %>
-            <%= f.text_field :body %>
-            <br>
-            <%= f.submit 'コメントする' %>
-          <% end %>
+        
+         <!-- コメントエリア -->
+         <%= render 'comments/comments', { comments: @comments } %> 
+         <!-- コメントフォーム -->
+         <%= render 'comments/form', { result: @result, comment: @comment } %>
       <% end %>
-
-      <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
-      <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'btn btn-info' %>
-    </div> 
-  </div>
+  <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
 </div>
