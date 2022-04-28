@@ -11,15 +11,17 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-        <div id="nav">
-          <% if logged_in? %>
-            <%= render 'shared/after_login_header' %>
-          <% else %>
-            <%= render 'shared/header' %>
-          <% end %>
-        </div>
-            <%= render 'shared/flash_message' %>
-            <%= yield %>
-            <%= render 'shared/footer' %>
+    <div class="content">
+      <div id="nav">
+        <% if logged_in? %>
+          <%= render 'shared/after_login_header' %>
+        <% else %>
+          <%= render 'shared/header' %>
+        <% end %>
+      </div>
+        <%= render 'shared/flash_message' %>
+      <%= yield %>
+    </div>
+      <%= render 'shared/footer' %>
   </body>
 </html>

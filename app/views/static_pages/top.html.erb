@@ -1,4 +1,5 @@
 <main>
+  <div class="container-fluid"> 
     <div class='top-wrapper'>
       <div class="text-center">
         <div class="mt-5 mb-4">
@@ -13,7 +14,7 @@
 
     <div class="cards-wrapper text-muted">
       <div class="top-cards pt-5 pb-4">
-      <h3 class="text-center mt-3 mb-4">モノマネランキングTOP3</h3>
+       <h3 class="text-center mt-3 mb-4">モノマネランキングTOP3</h3>
         <!-- カード一覧 -->
           <div class="row">
             <% if @cards.present? %>
@@ -28,7 +29,7 @@
 
    <div class="middle-wrapper text-muted">
     <h2 class="middle_title text-center mt-5 pb-4">本アプリの使い方</h2>
-      <div class="contents">
+      <div class="top-contents">
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
             <div class="p-2 bd-highlight">
               <div class="text-contents mt-5">
@@ -45,7 +46,7 @@
       </div>
 
 
-      <div class="contents">
+      <div class="top-contents">
         <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
             <div class="p-2 bd-highlight">
               <div class="image-contents">
@@ -61,7 +62,7 @@
         </div>
       </div>
 
-      <div class="contents">
+      <div class="top-contents">
         <div class="d-flex flex-row bd-highlight mb-5 justify-content-center">
             <div class="p-2 bd-highlight">
               <div class="text-contents mt-5">
@@ -77,4 +78,5 @@
         </div>
       </div> 
    </div>
+  </div>
 </main>

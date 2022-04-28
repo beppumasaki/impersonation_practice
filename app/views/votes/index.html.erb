@@ -1,18 +1,20 @@
-<div class="votes-wrapper text-muted">
-  <div class="top-cards pt-5 pb-4">
-      <%= link_to "お題を登録", new_vote_path, class:"btn btn-primary float-right mr-5" %>
-    <div class="text-center mb-4">
-        <h2 class="pb-3">お題総選挙</h2>
-        <h4>票の多かったTOP5のお題が来月に追加されます</h4>
-    </div>
-
-    <!-- カード一覧 -->
-      <div class="row">
-        <% if @votes.present? %>
-          <%= render partial: 'vote', collection: @votes %>
-        <% else %>
-          <p>選挙に出馬中のお題はありません。</p>
-        <% end %>
+<div class="container">
+  <div class="votes-wrapper text-muted">
+    <div class="top-cards pt-5 pb-4">
+        <%= link_to "お題を登録", new_vote_path, class:"btn btn-primary float-right mr-5" %>
+      <div class="text-center mb-4">
+          <h2 class="pb-3">お題総選挙</h2>
+          <h4>票の多かったTOP5のお題が来月に追加されます</h4>
       </div>
+
+      <!-- カード一覧 -->
+        <div class="row">
+          <% if @votes.present? %>
+            <%= render partial: 'vote', collection: @votes %>
+          <% else %>
+            <p>選挙に出馬中のお題はありません。</p>
+          <% end %>
+        </div>
+    </div>
   </div>
- </div>
+</div>

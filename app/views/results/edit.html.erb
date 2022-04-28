@@ -1,33 +1,32 @@
-<div class='top-wrapper'>
-  <div class='top-inner-text text-center'>
-    <div class='score'>
-      <h2><%= @target.name %>：<%= @result.score %>点</h2>
-    </div>
-    <div class='advice'>
-      <h2>
-        <% if @result.match_target != @target.name then %>
-         　おすすめのモノマネ：<%= @result.match_target%>
-        <% end %>
-      </h2>
-    </div>
-    <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
-  </div> 
-
-
-  <div class="container">
+<div class="container">
+  <div class='top-wrapper'>
+    <div class='top-inner-text text-center'>
+      <div class='score'>
+        <h2><%= @target.name %>：<%= @result.score %>点</h2>
+      </div>
+      <div class='advice'>
+        <h2>
+          <% if @result.match_target != @target.name then %>
+          　おすすめのモノマネ：<%= @result.match_target%>
+          <% end %>
+        </h2>
+      </div>
+      <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+    </div> 
+  
     <div class="row">
         <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        <%= form_with model: @result, url: user_result_path(@result), local: true do |f| %>
-            <div class="form-group">
-            <%= f.label :body %>
-            <%= f.text_field :body, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-            <%= f.label :state %>
-            <%= f.select :state, Result.states.invert, {}, class: 'form-control' %>
-            </div>
-            <%= f.submit "更新", class: 'btn btn-primary' %>
-        <% end %>
+          <%= form_with model: @result, url: user_result_path(@result), local: true do |f| %>
+              <div class="form-group">
+                <%= f.label :body %>
+                <%= f.text_field :body, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :state %>
+                <%= f.select :state, Result.states.invert, {}, class: 'form-control' %>
+              </div>
+              <%= f.submit "更新", class: 'btn btn-primary' %>
+          <% end %>
         </div>
     </div>
   </div>

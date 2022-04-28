@@ -17,13 +17,22 @@
 //  header {
 //     background-color:#006596;
 // }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 100%;
+}
+
 nav.navbar {
     min-height: 38px;
     background-color: #1F80DA;
     background-image: none;
   }
   
-
 .cards-wrapper {
   min-height: 38px;
   background-color: #97BCF0;
@@ -31,9 +40,15 @@ nav.navbar {
 }
 
 footer {
-  min-height: 38px;
+  height: 58px;
   background-color: #1F80DA;
   background-image: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content {
+  min-height: calc(100vh - 55px);
 }
 
 .btn-primary {
