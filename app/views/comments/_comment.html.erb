@@ -1,10 +1,13 @@
-        <tr id="comment-<%= comment.id %>">
-          <td>
-            <h5 class="comment-name"><%= User.find(comment.user_id).name %></h5>
-            <p class="comment-body"><%= comment.body %></p>
-            
-          <% if current_user.own?(comment) %>
-           <td class="action">
-           </td>
-          <% end %>
-        </tr>
+<tr id="comment-<%= comment.id %>">
+    <td>
+    <h5 class="comment-name"><%= User.find(comment.user_id).name %></h5>
+    <p class="comment-body"><%= comment.body %></p>
+    
+    <% if current_user.own?(comment) %>
+        <td class="action">
+            <%= link_to user_result_comment_path(current_user, result, comment), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
+              <i class="far fa-trash-alt"></i> 
+            <% end %>
+        </td>
+    <% end %>
+</tr>

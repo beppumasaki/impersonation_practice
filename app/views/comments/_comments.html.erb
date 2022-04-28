@@ -1,7 +1,8 @@
+<h2>コメント一覧</h2>
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <table id="js-table-comment" class="table">
-         <%= render comments %>
+         <%= render comments , { result: @result } %>
       </table>
     </div>
   </div>

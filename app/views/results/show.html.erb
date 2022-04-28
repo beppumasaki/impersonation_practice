@@ -33,13 +33,9 @@
     </div>
   </div>
 
-      <% if current_user %>
-        <h2>コメント一覧</h2>
-        
          <!-- コメントエリア -->
-         <%= render 'comments/comments', { comments: @comments } %> 
-         <!-- コメントフォーム -->
-         <%= render 'comments/form', { result: @result, comment: @comment } %>
-      <% end %>
+         <%= render 'comments/comments', { comments: @comments } if Comment.where(result_id: @result.id).count > 0 %> 
+            <!-- コメントフォーム -->
+            <%= render 'comments/form', { result: @result, comment: @comment }  if logged_in? %>
   <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
 </div>

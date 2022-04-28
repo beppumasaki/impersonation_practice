@@ -8,6 +8,14 @@ class CommentsController < ApplicationController
           redirect_to user_results_path(current_user)
         end
       end
+
+      def destroy
+        @comment = Comment.find(params[:id])
+        @result = Result.find(@comment.result_id)
+        @comment.destroy
+        redirect_to user_result_path(current_user, @result)
+
+      end
     
       private
       def comment_params
