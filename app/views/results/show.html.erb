@@ -5,11 +5,10 @@
       <!-- 掲示板内容 -->
       <article class="card">
         <div class="card-body">
-        <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' %>
-          <div class='row'>
+        <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>
+          <div class='row text-center'>
             <div class='col-md-9'>
               <h1 style='display: inline;'><%= @target.name %>：<%= @result.score %>点</h1>
-
               <div class='advice'>
                 <h4>
                   <% if @result.match_target == @target.name then %>
@@ -19,12 +18,13 @@
                   <% end %>
                 </h4>
               </div>
-              <%=audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
-
+              <%= audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
+              <% if logged_in? %>
               <ul class="list-inline">
                 <li class="list-inline-item">by <%= @user.name %></li>
                 <li class="list-inline-item"><%= @result.created_at %></li>
               </ul>
+              <% end %>
             </div>
           </div>
           <p><%= simple_format(@result.body) %></p>
@@ -33,9 +33,9 @@
     </div>
   </div>
 
-         <!-- コメントエリア -->
-         <%= render 'comments/comments', { comments: @comments } if Comment.where(result_id: @result.id).count > 0 %> 
-            <!-- コメントフォーム -->
-            <%= render 'comments/form', { result: @result, comment: @comment }  if logged_in? %>
-  <h4><%= link_to 'お題へ戻る', targets_path, class: "link" %></h4>
+<!-- コメントエリア -->
+  <%= render 'comments/comments', { comments: @comments } if Comment.where(result_id: @result.id).count > 0 %> 
+<!-- コメントフォーム -->
+  <%= render 'comments/form', { result: @result, comment: @comment } if logged_in? %>
+  <h4 class= "text-center" ><%= link_to 'お題を選ぶ', targets_path, class: "link" %></h4>
 </div>
