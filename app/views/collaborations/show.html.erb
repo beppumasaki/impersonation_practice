@@ -1,15 +1,21 @@
-<div class='top-wrapper'>
-  <div class='top-inner-text text-center'>
-    <div class='title'>
-      <h2><%= @collaboration.title %></h2>
-    </div>
-      <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
-
-    <div class='body'>
-      <h4>ボディ↓</h4>
-      <p><%= @collaboration.body %></p>
-    </div>
-
-    <h4><%= link_to 'コラボ一覧へ戻る', user_collaborations_path(current_user) %></h4>
-  </div> 
-</div>   
+<div class="container  mt-5 mb-5 pt-2">
+  <div class="row mb-3">
+      <div class="col-lg-8 offset-lg-2">
+        <h1>コラボ詳細</h1>
+        <article class="card">
+          <div class="card-body">
+            <div class='row text-center'>
+              <div class='col-md-9'>
+                <div class='title'>
+                  <h2><%= @collaboration.title %></h2>
+                </div>
+                <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
+              </div>
+            </div>
+            <p><%= simple_format(@collaboration.body) %></p>
+          </div>
+        </article>
+          <h4><%= link_to 'コラボ一覧へ戻る', user_collaborations_path(current_user) %></h4>
+      </div>
+  </div>
+</div>

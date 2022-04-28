@@ -2,10 +2,14 @@
   <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
       <h1>結果詳細</h1>
-      <!-- 掲示板内容 -->
       <article class="card">
         <div class="card-body">
-        <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>
+            <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>
+            <% if @result.user_id == current_user.id %>
+              <%= link_to edit_user_result_path(@user, @result), class: 'btn btn-primary float-right mr-2' do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            <% end %>
           <div class='row text-center'>
             <div class='col-md-9'>
               <h1 style='display: inline;'><%= @target.name %>：<%= @result.score %>点</h1>
