@@ -42,8 +42,11 @@ class CollaborationsController < ApplicationController
   
 
     def create
-      @collaboration = Collaboration.create(collaboration_params)
+      @collaboration = Collaboration.new(collaboration_params)
       @result = Result.find(@collaboration.result_id)
+      @user = User.find(@result.user_id)
+      @collaboration.title = "#{current_user.name}と#{@user.name}"
+      @collaboration.save
 
       # 自動でcreate後にshowアクションが呼び出されてしまう不具合によりコメントアウト
       # if @collaboration
