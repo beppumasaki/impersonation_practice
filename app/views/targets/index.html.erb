@@ -1,6 +1,8 @@
 <div class="container">
   <div class='top-wrapper mt-5'>
+   <% unless logged_in? %>
      <%= link_to "新しいお題を追加する", new_user_path, class: 'float-right btn btn-info' %>
+   <% end %>
     <div class='top-inner-text text-center'>
       <h1>モノマネするお題を選んでください</h1>
         <div class="dropdown">
