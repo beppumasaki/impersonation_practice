@@ -1,0 +1,18 @@
+<div class="container-fluid mt-5">
+  <div class="text-center text-muted" >
+    <h1 class="mb-1">公開中のコラボ</h1>
+  </div>
+  <div class="collaboration-boards-wrapper text-muted">
+    <div class="top-collaboration-boards pt-5 pb-4">
+
+      <!-- カード一覧 -->
+        <div class="row">
+          <% if @collaboration_boards.present? %>
+            <%= render partial: 'collaboration_board', collection: @collaboration_boards %>
+          <% else %>
+            <p>公開されているコラボはありません。</p>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

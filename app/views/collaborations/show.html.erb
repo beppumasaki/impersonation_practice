@@ -7,7 +7,7 @@
             <div class='row text-center'>
               <div class='col-md-9'>
                 <div class='title'>
-                  <h2><%= @collaboration.title %></h2>
+                  <h2 class="mb-4"><%= @collaboration.title %></h2>
                 </div>
                 <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
               </div>
@@ -15,7 +15,6 @@
             <p><%= simple_format(@collaboration.body) %></p>
           </div>
         </article>
-          <h4><%= link_to 'コラボ一覧へ戻る', user_collaborations_path(current_user) %></h4>
       </div>
   </div>
 </div>
