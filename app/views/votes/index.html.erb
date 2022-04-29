@@ -1,12 +1,9 @@
-<div class="container mt-5">
-  <h1>お題総選挙</h1>
-  <div class="votes-wrapper text-muted">
+<div class="container text-muted mt-5">
+  <h1 class="text-center">お題総選挙</h1>
+  <h4 class="text-center mb-4">票の多かったTOP5のお題が来月に追加されます</h4>
+  <%= link_to "お題を登録", new_vote_path, class:"btn btn-primary float-right mr-5" %>
+  <div class="votes-wrapper">
     <div class="top-cards pt-5 pb-4">
-        <%= link_to "お題を登録", new_vote_path, class:"btn btn-primary float-right mr-5" %>
-      <div class="text-center mb-4">
-          <h4>票の多かったTOP5のお題が来月に追加されます</h4>
-      </div>
-
       <!-- カード一覧 -->
         <div class="row">
           <% if @votes.present? %>

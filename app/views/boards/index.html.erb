@@ -1,10 +1,12 @@
 <div class="container-fluid mt-5">
-  <h1>みんなの結果</h1>
+  <div class="text-center text-muted" >
+    <h1 class="mb-1">公開中のモノマネ</h1>
+    <h4 class="mb-5">投稿にコメントしよう!!</h4>
+    <%= link_to "ランキングを見る", ranks_path, class:"btn btn-primary mr-5" %>
+    <%= link_to "公開中のコラボを見る", "#", class:"btn btn-primary mr-5" %>
+  </div>
   <div class="boards-wrapper text-muted">
     <div class="top-boards pt-5 pb-4">
-      <div class="text-center mb-4">
-          <h4>みんなの投稿にコメントしよう!!</h4>
-      </div>
 
       <!-- カード一覧 -->
         <div class="row">
