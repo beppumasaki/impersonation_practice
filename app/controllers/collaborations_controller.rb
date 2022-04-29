@@ -13,6 +13,8 @@ class CollaborationsController < ApplicationController
         #ここから処理記載
           @collaboration = Collaboration.find(params[:id])
           @result = Result.find(@collaboration.result_id)
+          @user = User.find(@collaboration.user_id)
+          @collaboration_user = User.find(@result.user_id)
           # @comments = @result.comments
           # @comment = Comment.new
       end
