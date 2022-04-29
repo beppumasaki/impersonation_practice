@@ -1,7 +1,7 @@
 <% result = Result.find(collaboration.result_id) %>
 <tr>
   <td class='align-middle'><%= collaboration.created_at %></td>
-  <td class='align-middle'><%= Result.find(collaboration.result_id).user_id %></td>
+  <td class='align-middle'><%= collaboration.title %></td>
   <td class='align-middle td-pe-none'><%= collaboration.state %></td>
   <td class='align-middle'>
     <%= link_to "詳細", user_result_collaboration_path(current_user, result, collaboration), class: 'btn btn-info' %>

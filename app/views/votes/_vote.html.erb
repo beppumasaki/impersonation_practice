@@ -1,7 +1,14 @@
-<div class="card mx-auto" style="width: 25rem;">
+<div class="card mr-5" style="width: 20rem;">
     <div class="card-body">
-      <h5 class="card-title"><%= vote.name %></h5>
+      <h3 class="card-text"><%= vote.name %></h3>
+      <br><h4 class="card-text"><%= Like.where(vote_id: vote.id).count %>票</h4>
       <br><%= render 'like_button', {vote: vote} %>
+      
+      <% if vote.user_id == current_user.id %>
+        <%= link_to vote_path(vote), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
+            <i class="far fa-trash-alt"></i> 
+        <% end %>
+      <% end %>
     </div>
 
 </div>

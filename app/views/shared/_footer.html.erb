@@ -1,11 +1,18 @@
-<footer id='footer' class='footer-bottom'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-sm-6 col-12'>
-        <div class='copyright'>
-          <p class="text-light">©︎2022 monomany</p>
+<footer id='footer'>
+  <div class="text-white">
+      <ul class="row">
+        <div class="col-sm-2 p-3">
+           ©︎2022 monomanew
         </div>
-      </div>
-    </div>
+        <div class="col-sm-2 p-3">
+          <%= link_to '利用規約', "/service", class: "text-white"%>
+        </div>
+        <div class="col-sm-2 p-3">
+          <%= link_to "プライバシーポリシー", '/privacy', class: "text-white" %>
+        </div>
+        <div class="col-sm-2 p-3">
+          <%= link_to 'お問い合わせ', '/info', class: "text-white" %>
+        </div>
+      </ul>
   </div>
 </footer>

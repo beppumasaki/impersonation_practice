@@ -1,26 +1,28 @@
-<div class="container mb-5 pt-2">
-  <h1>ランキング</h1>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">点数</th>
-          <th scope="col">お題</th>
-          <th scope="col">ユーザー名</th>
-          <th scope="col">詳細</th>
-          <th scope="col">音声</th>
-        </tr>
-        </thead>
-        <tbody>
-         <%= render partial: 'rank', collection: @ranks %>
-        </tbody>
-      </table>
-    </div>
+<div class="container mt-5">
+  <div class="text-center text-muted mb-5" >
+    <h1>ランキング</h1>
   </div>
-  <div class="row mb-5">
-    <div class="col-md-12">
-      <!-- ページネーション -->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">点数</th>
+            <th scope="col">お題</th>
+            <th scope="col">ユーザー名</th>
+            <th scope="col">詳細</th>
+            <th scope="col">音声</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: 'rank', collection: @ranks %>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <!-- ページネーション -->
+      </div>
+    </div>
 </div>

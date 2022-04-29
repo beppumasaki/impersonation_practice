@@ -1,0 +1,19 @@
+<div class="container-fluid mt-5">
+  <div class="text-center text-muted" >
+    <h1 class="mb-1">公開中のモノマネ</h1>
+    <h4 class="mb-5">投稿にコメントしよう!!</h4>
+  </div>
+  <div class="boards-wrapper text-muted">
+    <div class="top-boards pt-5 pb-4">
+
+      <!-- カード一覧 -->
+        <div class="row">
+          <% if @boards.present? %>
+            <%= render partial: 'board', collection: @boards %>
+          <% else %>
+            <p>公開されているとモノマネはありません。</p>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

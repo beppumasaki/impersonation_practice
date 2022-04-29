@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <div class="content">
       <div id="nav">
         <% if logged_in? %>
           <%= render 'shared/after_login_header' %>
@@ -19,7 +20,8 @@
         <% end %>
       </div>
         <%= render 'shared/flash_message' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+      <%= yield %>
+    </div>
+      <%= render 'shared/footer' %>
   </body>
 </html>

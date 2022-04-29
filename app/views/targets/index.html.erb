@@ -1,21 +1,22 @@
-<div class='top-wrapper'>
-  <div class='top-inner-text text-center'>
-    <h1>モノマネするお題を選んでください</h1>
-      <div class="dropdown">
-        <a class="btn btn-primary mt-3 mb-5 dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          お題を選択
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <% @targets.each do |target| %>
-              <%= link_to target_path(target), class: 'dropdown-item' do %>
-                <li><%= target.name %></li>
+<div class="container">
+  <div class='top-wrapper mt-5'>
+   <% unless logged_in? %>
+     <%= link_to "新しいお題を追加する", new_user_path, class: 'float-right btn btn-info' %>
+   <% end %>
+    <div class='top-inner-text text-center'>
+      <h1>モノマネするお題を選んでください</h1>
+        <div class="dropdown">
+          <a class="btn btn-primary mt-3 mb-5 dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            お題を選択
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <% @targets.each do |target| %>
+                <%= link_to target_path(target), class: 'dropdown-item' do %>
+                  <li><%= target.name %></li>
+                <% end %>
               <% end %>
-            <% end %>
-        </ul>
-      </div>
-    <div class>
-      <%= image_tag 'impersonation.png',width: '20%', height: '20%', class:"rounded mx-auto d-block" %>
+          </ul>
+        </div>
     </div>
   </div>
-  <%= link_to "ここにないお題を追加する", new_vote_path, class: "nav-link" %>
 </div>

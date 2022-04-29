@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row">
-  <h3>プロフィール編集</h3>
+<div class="container mt-5 ">
+<h1>プロフィール編集</h1>
+  <div class="row mt-3">
     <div class="col-md-5 offset-md-1">
       <%= form_with model: @user, url: user_path, local: true do |f| %>
         <div>
@@ -39,9 +39,6 @@
       <% end %>
     </div>
   </div>
-        <div class="select-text mt-3">
-          <%= link_to "プロフィールに戻る", user_path, class:"button" %>
-        </div>
 </div>
 
 

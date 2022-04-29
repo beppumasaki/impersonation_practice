@@ -1,0 +1,12 @@
+<% user = User.find(board.user_id) %>
+<% result = Result.find(board.id) %>
+<div class="card mr-3 mx-auto" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= Target.find(board.target_id).name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted text-right"><%= board.score %>点</h6>
+      <p class="card-text">by <%= User.find(board.user_id).name %></p>
+      <%=audio_tag("#{board.impersonation_voice.url}", controls: true) %>
+      <p class="card-text"><%= board.body %></p>
+       <%= link_to "もっと見る", user_result_path(user, result), class: 'btn btn-info float-right' %>
+    </div>
+</div>

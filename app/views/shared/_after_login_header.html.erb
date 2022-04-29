@@ -11,13 +11,21 @@
           <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ランキング", ranks_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
           <%= link_to "プロフィール", user_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "お題総選挙", votes_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            みんなのモノマネ
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "公開中のモノマネ", boards_path, class: "dropdown-item" %></li>
+            <li><%= link_to "公開中のコラボ", collaboration_boards_path, class:"dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "ランキング", ranks_path, class:"dropdown-item" %></li>
+          </ul>
         </li>
       </ul>
     </div>

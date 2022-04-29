@@ -1,0 +1,11 @@
+<% user = User.find(collaboration_board.user_id) %>
+<% result = Result.find(collaboration_board.result_id) %>
+<div class="card mr-3 mx-auto" style="width: 25rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= collaboration_board.title %></h5>
+      <p class="card-text">by <%= user.name %></p>
+      <%=audio_tag("#{collaboration_board.collaboration_voice.url}", controls: true) %>
+      <p class="card-text"><%= collaboration_board.body %></p>
+       <%= link_to "もっと見る", user_result_collaboration_path(current_user, result, collaboration_board), class: 'btn btn-info float-right' %>
+    </div>
+</div>

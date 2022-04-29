@@ -3,6 +3,7 @@ class ResultsController < ApplicationController
   def show
     @result = Result.find(params[:id])
     @target = Target.find(@result.target_id)
+    @user = User.find(@result.user_id)
     @comments = @result.comments
     @comment = Comment.new
 

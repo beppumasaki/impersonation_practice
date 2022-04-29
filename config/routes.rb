@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   get 'ranks', to: 'ranks#index'
-
+  get 'boards', to: 'boards#index'
+  get 'collaboration_boards', to: 'collaboration_boards#index'
 
   namespace :admin do
     root to: 'dashboards#index'
