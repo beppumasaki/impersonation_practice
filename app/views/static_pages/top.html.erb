@@ -1,10 +1,11 @@
 <main>
-  <div class="container-fluid"> 
+  <div class="container-fluid text-muted"> 
     <div class='top-wrapper'>
       <div class="text-center">
         <div class="mt-5 mb-4">
-          <%= image_tag 'monomanew.png', class:'logo'%>
-          <%= image_tag 'monomane_man.png', class:'logo', size: '250x350' %>
+          <h4>モノマネ練習アプリ</h4>
+          <%= image_tag 'maneo.png', class:'logo'%>
+          <%= image_tag 'monomane_man.png', class:'logo ml-5', size: '250x250' %>
         </div>
         <div>
             <%= link_to "はじめる", targets_path, class: "btn btn-primary btn-lg mb-5" %>
@@ -30,16 +31,16 @@
    <div class="middle-wrapper text-muted">
     <h2 class="middle_title text-center mt-5 pb-4">本アプリの使い方</h2>
       <div class="top-contents">
-        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-            <div class="p-2 bd-highlight">
+        <div class="d-flex flex-row mb-3 justify-content-center">
+            <div class="p-2">
               <div class="text-contents mt-5">
                 <h2 class="top-impersonation">モノマネの完成度を点数化</h2>
                 <p>モノマネが得意な人は腕試し、苦手な人は練習として使えます。<br>結果画面では、あなたの音声データからおすすめのお題を提示します。</p>
               </div>
             </div>
-            <div class="p-2 bd-highlight">
+            <div class="p-2">
               <div class="image-contents">
-                <%= image_tag 'score.png',size: '250x250' %>
+                <%= image_tag 'score.png',size: '400x250' %>
               </div>
             </div>
         </div>
@@ -47,13 +48,13 @@
 
 
       <div class="top-contents">
-        <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
-            <div class="p-2 bd-highlight">
+        <div class="d-flex flex-row mb-3 justify-content-center">
+            <div class="p-2">
               <div class="image-contents">
-              <%= image_tag 'collaboration.png', size: '250x250' %>
+              <%= image_tag 'collaboration.png', size: '400x250' %>
               </div>
             </div>
-            <div class="p-2 bd-highlight">
+            <div class="p-2">
               <div class="text-contents mt-5">
                 <h2 class="top-collaboration">みんなのモノマネとコラボ</h2>
                 <p>公開されてるモノマネ音声には、更に声を重ねることができます。<br>ハモリの練習にも使えます。</p>
@@ -63,14 +64,14 @@
       </div>
 
       <div class="top-contents">
-        <div class="d-flex flex-row bd-highlight mb-5 justify-content-center">
-            <div class="p-2 bd-highlight">
+        <div class="d-flex flex-row mb-5 justify-content-center">
+            <div class="p-2">
               <div class="text-contents mt-5">
                 <h2 class="top-impersonation">みんなの投票でお題を増やす</h2>
                 <p>モノマネのお題を追加したい場合は、お題総選挙から登録をお願いします。<br>毎月、投票数の多かった上位5つのお題を追加します。</p>
               </div>
             </div>
-            <div class="p-2 bd-highlight">
+            <div class="p-2">
               <div class="image-contents">
                 <%= image_tag 'vote.png',size: '250x250' %>
               </div>
