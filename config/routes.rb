@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
   get '/info', to: 'static_pages#info'
+  get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/impersonation-book/sitemaps/sitemap.xml.gz")
 
   resources :users, only: %i[new create show edit update] do
     resources :collaborations, only: %i[index]
