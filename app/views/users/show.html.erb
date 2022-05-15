@@ -1,19 +1,20 @@
-<div class="container mt-5">
+<% set_meta_tags title: t('.title') %>
+<div class="container text-muted mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h1 class="float-left mb-5">プロフィール</h1>
+      <h1 class="float-left mb-5"><i class="fas fa-user mr-2"></i><%= t('.title') %></h1>
         <%= link_to edit_user_path, class: 'btn btn-primary float-right' do %>
          <i class="fa-regular fa-pen-to-square"></i>
         <% end %>
         <%= link_to "コラボ履歴", user_collaborations_path(current_user), class:"btn btn-primary float-right mr-3" %>
-        <%= link_to "採点履歴", user_results_path(current_user), class:"btn btn-primary float-right mr-3" %>
+        <%= link_to t('results.index.title'), user_results_path(current_user), class:"btn btn-primary float-right mr-3" %>
       <table class="table">
         <tr>
-          <th scope="row">メールアドレス</th>
+          <th scope="row"><%= User.human_attribute_name(:email) %></th>
           <td><%= current_user.email %></td>
         </tr>
         <tr>
-          <th scope="row">ユーザー名</th>
+          <th scope="row"><%= User.human_attribute_name(:name) %></th>
           <td><%= current_user.name %></td>
         </tr>
       </table>

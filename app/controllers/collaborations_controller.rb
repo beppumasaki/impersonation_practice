@@ -27,7 +27,8 @@ class CollaborationsController < ApplicationController
     def edit
       @collaboration = Collaboration.find(params[:id])
       @result = Result.find(@collaboration.result_id)
-      # @target = Target.find(@result.target_id)
+      @user = User.find(@collaboration.user_id)
+      @collaboration_user = User.find(@result.user_id)
     end
   
     def destroy

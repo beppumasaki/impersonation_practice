@@ -1,7 +1,8 @@
-<div class="container  mt-5 mb-5 pt-2">
-  <div class="row mb-3">
+<% set_meta_tags title: t('.title') %>
+<div class="container">
+  <div class="row">
       <div class="col-lg-8 offset-lg-2">
-        <h1>コラボ詳細</h1>
+        <h1 class="text-muted mt-5 mb-3"><i class="fa-solid fa-people-carry-box mr-2"></i><%= t('.title') %></h1>
         <article class="card">
           <div class="card-body">
             <div class='row text-center'>
@@ -13,7 +14,7 @@
                 <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
                 <ul class="list-inline">
                   <li class="list-inline-item">by <%= @user.name %></li>
-                  <li class="list-inline-item"><%= @result.created_at %></li>
+                  <li class="list-inline-item"><%= l @result.created_at, format: :short %></li>
                 </ul>
               </div>
             </div>

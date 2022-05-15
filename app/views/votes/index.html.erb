@@ -1,5 +1,6 @@
+<% set_meta_tags title: t('.title') %>
 <div class="container text-muted mt-5">
-  <h1 class="text-center">お題総選挙</h1>
+  <h1 class="text-center"><i class="fa-solid fa-hand mr-2"></i><%= t('.title') %></h1>
   <h4 class="text-center mb-4">票の多かったTOP5のお題が来月に追加されます</h4>
   <%= link_to "お題を登録", new_vote_path, class:"btn btn-primary float-right mr-5" %>
   <div class="votes-wrapper">

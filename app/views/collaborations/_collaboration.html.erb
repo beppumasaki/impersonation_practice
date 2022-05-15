@@ -1,6 +1,6 @@
 <% result = Result.find(collaboration.result_id) %>
 <tr>
-  <td class='align-middle'><%= collaboration.created_at %></td>
+  <td class='align-middle'><%= l collaboration.created_at, format: :short %></td>
   <td class='align-middle'><%= collaboration.title %></td>
   <td class='align-middle td-pe-none'><%= collaboration.state %></td>
   <td class='align-middle'>

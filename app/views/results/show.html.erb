@@ -1,7 +1,8 @@
-<div class="container pt-5">
+<% set_meta_tags title: t('.title') %>
+<div class="container pt-5 text-muted">
   <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
-      <h1>結果詳細</h1>
+      <h1><i class="fa-solid fa-microphone mr-2"></i><%= t('.title') %></h1>
       <article class="card">
         <div class="card-body">
             <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>
@@ -26,7 +27,7 @@
               <% if logged_in? %>
               <ul class="list-inline">
                 <li class="list-inline-item">by <%= @user.name %></li>
-                <li class="list-inline-item"><%= @result.created_at %></li>
+                <li class="list-inline-item"><%= l @result.created_at, format: :short %></li>
               </ul>
               <% end %>
             </div>

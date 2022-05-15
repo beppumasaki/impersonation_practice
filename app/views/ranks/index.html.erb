@@ -1,28 +1,23 @@
+<% set_meta_tags title: t('.title') %>
 <div class="container mt-5">
-  <div class="text-center text-muted mb-5" >
-    <h1>ランキング</h1>
-  </div>
-    <div class="row">
-      <div class="col-md-12">
+
+    <h1 class="text-center text-muted mb-5"><i class="fa-solid fa-medal mr-2"></i><%= t('.title') %></h1>
+    <div class="row justify-content-center">
+      <div class="col-md-9">
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">点数</th>
-            <th scope="col">お題</th>
-            <th scope="col">ユーザー名</th>
-            <th scope="col">詳細</th>
-            <th scope="col">音声</th>
+            <th scope="col"><%= Result.human_attribute_name(:score) %></th>
+            <th scope="col"><%= Target.human_attribute_name(:name) %></th>
+            <th scope="col"><%= User.human_attribute_name(:name) %></th>
+            <th scope="col"><%= Result.human_attribute_name(:impersonation_voice) %></th>
+            <th scope="col"></th>
           </tr>
           </thead>
           <tbody>
           <%= render partial: 'rank', collection: @ranks %>
           </tbody>
         </table>
-      </div>
-    </div>
-    <div class="row mb-5">
-      <div class="col-md-12">
-        <!-- ページネーション -->
       </div>
     </div>
 </div>

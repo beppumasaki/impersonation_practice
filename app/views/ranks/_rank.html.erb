@@ -2,9 +2,9 @@
   <td class='align-middle'><%= rank.score %>点</td>
   <td class='align-middle td-pe-none'><%= Target.find(rank.target_id).name %></td>
   <td class='align-middle'><%= User.find(rank.user_id).name %></td>
+  <td><%=audio_tag("#{rank.impersonation_voice.url}", controls: true) %></td>
   <td class='align-middle'>
     <% user = User.find(rank.user_id) %>
-    <%= link_to "詳細", user_result_path(user, rank.id), class: 'btn btn-info' %>
+    <%= link_to t('defaults.show'), user_result_path(user, rank.id), class: 'btn btn-info' %>
   </td>
-  <td><%=audio_tag("#{rank.impersonation_voice.url}", controls: true) %></td>
 </tr>
