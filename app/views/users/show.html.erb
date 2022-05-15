@@ -1,8 +1,8 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container mt-5">
+<div class="container text-muted mt-5">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <h1 class="float-left mb-5"><%= t('.title') %></h1>
+      <h1 class="float-left mb-5"><i class="fas fa-user mr-2"></i><%= t('.title') %></h1>
         <%= link_to edit_user_path, class: 'btn btn-primary float-right' do %>
          <i class="fa-regular fa-pen-to-square"></i>
         <% end %>

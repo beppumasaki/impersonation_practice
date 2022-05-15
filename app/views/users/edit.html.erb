@@ -1,8 +1,8 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container">
+<div class="container text-muted">
   <div class="row mt-5">
     <div class="col-lg-7 offset-lg-2">
-      <h1><%= t('.title') %></h1>
+      <h1 class="mb-5"><i class="fas fa-user mr-2"></i><%= t('.title') %></h1>
       <%= form_with model: @user, url: user_path, local: true do |f| %>
         <div class="form-group">
           <i class="fas fa-user"></i>

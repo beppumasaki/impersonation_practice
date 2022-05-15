@@ -1,13 +1,13 @@
 <% set_meta_tags title: t('.title') %>
+<div class="container text-muted mb-5">
+ <h1 class="text-muted mt-5 mb-3"><i class="fa-solid fa-people-carry-box mr-2"></i><%= t('.title') %></h1>
 <div class='top-wrapper'>
   <div class='top-inner-text text-center'>
     <div class='title'>
-      <h2><%= @collaboration.title %></h2>
+      <h2><%= @collaboration_user.name %>さんとのコラボ</h2>
     </div>
     <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
   </div> 
-
-  <div class="container">
     <div class="row">
         <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <%= form_with model: @collaboration, url: user_result_collaboration_path(@collaboration), local: true do |f| %>

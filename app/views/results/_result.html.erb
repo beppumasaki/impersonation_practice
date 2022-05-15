@@ -4,12 +4,9 @@
   <td class='align-middle'><%= Target.find(result.target_id).name %></td>
   <td class='align-middle td-pe-none'><%= result.state %></td>
   <td class='align-middle'>
-    <%= link_to t('defaults.show'), user_result_path(current_user, result), class: 'btn btn-info' %>
-    <%= link_to user_result_path(current_user, result), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
+    <%= link_to t('defaults.show'), user_result_path(current_user, result), class: 'btn btn-info mr-3' %>
+    <%= link_to user_result_path(current_user, result), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' do %>
       <i class="far fa-trash-alt"></i> 
-    <% end %>
-    <%= link_to edit_user_result_path(current_user, result), class: 'btn btn-primary float-right mr-2' do %>
-      <i class="fa-regular fa-pen-to-square"></i>
     <% end %>
   </td>
 </tr>
