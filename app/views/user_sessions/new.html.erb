@@ -1,7 +1,8 @@
+<% set_meta_tags title: t('.title') %>
 <div class="container">
   <div class="row mt-5">
     <div class=" col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-      <h1>ログイン</h1>
+      <h1><%= t('.title') %></h1>
       <%= form_with model: @user, url: login_path, local: true do |f| %>
         <div class="form-group">
           <%= f.label :email,User.human_attribute_name(:email) %>
@@ -12,11 +13,11 @@
           <%= f.password_field :password, class: 'form-control' %>
         </div>
         <div class="actions">
-          <%= f.submit "ログイン", class: 'btn btn-primary' %>
+          <%= f.submit t('defaults.login'), class: 'btn btn-primary' %>
         </div>
       <% end %>
       <div class='text-center'>
-        <%= link_to "未登録の方はこちら", new_user_path %>
+        <%= link_to t('.no_register'), new_user_path %>
       </div>
     </div>
   </div>

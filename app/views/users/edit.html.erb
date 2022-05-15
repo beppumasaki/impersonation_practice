@@ -1,40 +1,31 @@
-<div class="container mt-5 ">
-<h1>プロフィール編集</h1>
-  <div class="row mt-3">
-    <div class="col-md-5 offset-md-1">
+<% set_meta_tags title: t('.title') %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-7 offset-lg-2">
+      <h1><%= t('.title') %></h1>
       <%= form_with model: @user, url: user_path, local: true do |f| %>
-        <div>
-        <i class="fas fa-user"></i>
-        <%= f.label :user, User.human_attribute_name(:name) %>
+        <div class="form-group">
+          <i class="fas fa-user"></i>
+          <%= f.label :user, User.human_attribute_name(:name) %>
+          <%= f.text_field :name, class: "form-control mb-3", placeholder: :name %>
         </div>
-        <div class="input-group mb-3">
-        <%= f.text_field :name, class: "form-control mb-3", placeholder: :name %>
+        <div class="form-group">
+          <i class="fas fa-envelope"></i>
+          <%= f.label :email, User.human_attribute_name(:email) %>
+          <%= f.text_field :email, class: "form-control mb-3", placeholder: :email %>
         </div>
-        <div>
-        <i class="fas fa-envelope"></i>
-        <%= f.label :email, User.human_attribute_name(:email) %>
+        <div class="form-group">
+          <i class="fas fa-lock"></i>
+          <%= f.label :password, User.human_attribute_name(:password) %>
+          <%= f.password_field :password, class: "form-control mb-3", placeholder: :password %>
         </div>
-        <div class="input-group mb-3">
-        <%= f.text_field :email, class: "form-control mb-3", placeholder: :email %>
+        <div class="form-group">
+          <i class="fas fa-lock"></i>
+          <%= f.label :password, User.human_attribute_name(:password_confirmation) %>  
+          <%= f.password_field :password_confirmation, class: "form-control mb-3", placeholder: :password_confirmation %>
         </div>
-        <div>
-        <i class="fas fa-lock"></i>
-        <%= f.label :password, User.human_attribute_name(:password) %>
-        </div>
-        <div class="input-group mb-3">
-        <%= f.password_field :password, class: "form-control mb-3", placeholder: :password %>
-        </div>
-
-        <div>
-        <i class="fas fa-lock"></i>
-        <%= f.label :password, User.human_attribute_name(:password_confirmation) %>
-        </div>
-        <div class="input-group mb-3">
-        <%= f.password_field :password_confirmation, class: "form-control mb-3", placeholder: :password_confirmation %>
-        </div>
-
-        <div class="row m-0 mt-4 mb-2">
-        <%= f.submit "更新", class: "btn btn-primary" %>
+        <div class="actions">
+          <%= f.submit t('defaults.update'), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

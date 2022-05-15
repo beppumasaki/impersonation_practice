@@ -3,3 +3,83 @@ ja:
       formats:
         default: "%Y/%m/%d %H:%M:%S"
         short: "%m/%d %H:%M"
+  defaults:
+      login: 'ログイン'
+      logout: 'ログアウト'
+      new: '新規作成'
+      show: '詳細'
+      edit: '編集'
+      delete: '削除'
+      password: 'パスワード'
+      email: 'メールアドレス'
+      update: '更新'
+
+  static_pages:
+    top:
+      start: 'はじめる'
+    terms:
+      title: '利用規約'
+    privacy:
+      title: 'プライバシーポリシー'
+    info:
+      title: 'お問い合わせ'
+
+  targets:
+    index:
+      title: 'お題選択'
+    show:
+      title: '録音する'
+
+  results:
+    show:
+      title: 'モノマネ採点結果'
+    edit:
+      title: 'モノマネ結果を公開する？'
+    index:
+      title: 'モノマネ採点履歴'
+
+  collaborations:
+    show:
+      title: 'コラボ詳細'
+    edit:
+      title: 'コラボを公開する？'
+    index:
+      title: 'コラボ履歴'
+    new:
+      title: 'コラボする'
+      
+  ranks:
+    index:
+      title: 'ランキング'
+
+  users:
+    new:
+      title: "ユーザー登録"
+      register: "登録"
+      to_login_page: "ログインページへ"
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'
+
+  user_sessions:
+    new:
+      title: "ログイン"
+      no_register: "未登録の方はこちら"
+
+  boards:
+    index:
+      title: '公開中のモノマネ'
+
+  collaboration_boards:
+    index:
+      title: '公開中のコラボ'
+
+  votes:
+    index:
+      title: '来月のお題総選挙'
+    new:
+      title: "お題の登録"
+      register: "登録"
+
+

@@ -1,7 +1,8 @@
+<% set_meta_tags title: t('.title') %>
 <div class="container pt-5">
   <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
-      <h1>結果詳細</h1>
+      <h1><%= t('.title') %></h1>
       <article class="card">
         <div class="card-body">
             <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>

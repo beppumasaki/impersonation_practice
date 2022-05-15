@@ -1,3 +1,17 @@
 ja:
   activerecord:
-    
+    models:
+      user: "ユーザー"
+      result: "結果"
+      vote: "投票"
+    attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+      result:
+        body: "メモ"
+        state: "公開ステータス"
+      vote:
+        name: "追加したいお題"

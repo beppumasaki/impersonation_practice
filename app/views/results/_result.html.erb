@@ -4,7 +4,7 @@
   <td class='align-middle'><%= Target.find(result.target_id).name %></td>
   <td class='align-middle td-pe-none'><%= result.state %></td>
   <td class='align-middle'>
-    <%= link_to "詳細", user_result_path(current_user, result), class: 'btn btn-info' %>
+    <%= link_to t('defaults.show'), user_result_path(current_user, result), class: 'btn btn-info' %>
     <%= link_to user_result_path(current_user, result), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
       <i class="far fa-trash-alt"></i> 
     <% end %>
