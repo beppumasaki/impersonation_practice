@@ -1,8 +1,8 @@
 module ApplicationHelper
   def default_meta_tags
     {
-      site: 'ものまねお',
-      title: 'ものまねお 〜モノマネ測定アプリ〜',
+      site: 'ものまねお -モノマネ測定アプリ',
+      title: title,
       reverse: true,
       charset: 'utf-8',
       description: 'あなたのモノマネを点数化します！目指せモノマネ王（ものまねお）！',

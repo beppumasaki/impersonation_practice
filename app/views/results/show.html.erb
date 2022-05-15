@@ -26,7 +26,7 @@
               <% if logged_in? %>
               <ul class="list-inline">
                 <li class="list-inline-item">by <%= @user.name %></li>
-                <li class="list-inline-item"><%= @result.created_at %></li>
+                <li class="list-inline-item"><%= l @result.created_at, format: :short %></li>
               </ul>
               <% end %>
             </div>

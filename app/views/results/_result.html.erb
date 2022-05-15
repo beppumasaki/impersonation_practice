@@ -1,5 +1,5 @@
 <tr>
-  <td class='align-middle'><%= result.created_at %></td>
+  <td class='align-middle'><%= l result.created_at, format: :short %></td>
   <td class='align-middle td-pe-none'><%= result.score %>点</td>
   <td class='align-middle'><%= Target.find(result.target_id).name %></td>
   <td class='align-middle td-pe-none'><%= result.state %></td>
