@@ -37,3 +37,7 @@ ja:
       state:
         not_published: "非公開"
         published: "公開"
+    user:
+      role:
+        admin: "管理者"
+        general: "一般"

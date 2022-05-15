@@ -83,3 +83,14 @@ ja:
       register: "登録"
 
 
+  admin:
+    user_sessions:
+      new:
+        title: "管理者ログイン"
+    users:
+      index:
+        title: 'ユーザー一覧'
+      show:
+        title: 'ユーザー詳細情報'
+      edit:
+        title: 'ユーザー編集'
