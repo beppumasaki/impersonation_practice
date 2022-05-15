@@ -2,7 +2,7 @@
 <tr>
   <td class='align-middle'><%= l collaboration.created_at, format: :short %></td>
   <td class='align-middle'><%= collaboration.title %></td>
-  <td class='align-middle td-pe-none'><%= collaboration.state %></td>
+  <td class='align-middle td-pe-none'><%= collaboration.state_i18n %></td>
   <td class='align-middle'>
     <%= link_to "詳細", user_result_collaboration_path(current_user, result, collaboration), class: 'btn btn-info' %>
     <%= link_to "削除", user_result_collaboration_path(current_user, result, collaboration), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' %>
