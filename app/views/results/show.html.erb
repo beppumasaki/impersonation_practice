@@ -5,23 +5,25 @@
       <h1><i class="fa-solid fa-microphone mr-2"></i><%= t('.title') %></h1>
       <article class="card">
         <div class="card-body">
-            <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' if logged_in? %>
+          <% unless current_user.nil? %>
+            <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' %>
             <% if @result.user_id == current_user.id %>
               <%= link_to edit_user_result_path(@user, @result), class: 'btn btn-primary float-right mr-2' do %>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
             <% end %>
+          <% end %>  
           <div class='row text-center'>
             <div class='col-md-9'>
               <h1 style='display: inline;'><%= @target.name %>：<%= @result.score %>点</h1>
               <div class='advice mb-5'>
-                <h4>
+                <p>
                   <% if @result.match_target == @target.name then %>
-                  その調子で頑張りましょう！
+                   <%= @target.name %>はあなたにぴったりですね！
                   <% else %>
-                  おすすめ：<%= @result.match_target%>
+                   この声は、<%= @result.match_target%>もおすすめです！
                   <% end %>
-                </h4>
+                </p>
               </div>
               <%= audio_tag("#{@result.impersonation_voice.url}", controls: true) %>
               <% if logged_in? %>
@@ -35,6 +37,9 @@
           <p><%= simple_format(@result.body) %></p>
         </div>
       </article>
+      <%= link_to "https://twitter.com/share?url=#{request.url}&hashtags=ものまねお&text=【#{@target.name}】に挑戦しました！%0a%0a結果は… #{@result.score}点/100点でした！%0a#{@result.body}%0a%0a↓モノマネに挑戦してみる%0a", class: 'btn btn-primary float-right', target: '_blank' do %>
+         <i class="fab fa-twitter pe-1"></i><%= t('.share_to_twitter') %>
+        <% end %>
     </div>
   </div>
 

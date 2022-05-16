@@ -27,3 +27,17 @@ ja:
         body: "メモ"
         state: "公開ステータス"
         created_at: "日時"
+
+  enums:
+    result:
+      state:
+        not_published: "非公開"
+        published: "公開"
+    collaboration:
+      state:
+        not_published: "非公開"
+        published: "公開"
+    user:
+      role:
+        admin: "管理者"
+        general: "一般"

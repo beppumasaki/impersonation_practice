@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+  skip_before_action :require_login, only: [:show, :create]
 
   def show
     @result = Result.find(params[:id])
