@@ -4,8 +4,9 @@
   <td class='align-middle'><%= collaboration.title %></td>
   <td class='align-middle td-pe-none'><%= collaboration.state_i18n %></td>
   <td class='align-middle'>
-    <%= link_to "詳細", user_result_collaboration_path(current_user, result, collaboration), class: 'btn btn-info' %>
-    <%= link_to "削除", user_result_collaboration_path(current_user, result, collaboration), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' %>
-    <%= link_to "編集", edit_user_result_collaboration_path(current_user, result, collaboration), class: 'btn btn-info' %>
+    <%= link_to t('defaults.show'), user_result_collaboration_path(current_user, result, collaboration), class: 'btn btn-info mr-3' %>
+    <%= link_to user_result_collaboration_path(current_user, result, collaboration), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' do %>
+      <i class="far fa-trash-alt"></i> 
+    <% end %>
   </td>
 </tr>
