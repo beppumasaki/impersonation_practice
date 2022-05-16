@@ -24,7 +24,7 @@ module ApplicationHelper
         locale: 'ja_JP'
       },
       twitter: {
-        card: 'monomaneo_top.png'
+        card: 'summary_large_image'
       }
     }
   end
