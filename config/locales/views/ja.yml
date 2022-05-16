@@ -33,6 +33,7 @@ ja:
   results:
     show:
       title: 'モノマネ採点結果'
+      share_to_twitter: '結果をシェア'
     edit:
       title: 'モノマネ結果を公開する？'
     index:
