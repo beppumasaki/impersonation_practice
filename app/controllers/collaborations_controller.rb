@@ -1,4 +1,5 @@
 class CollaborationsController < ApplicationController
+   skip_before_action :require_login, only: %i[show]
     
     def new
       @collaboration = Collaboration.new(collaboration_params)
@@ -13,6 +14,7 @@ class CollaborationsController < ApplicationController
         #ここから処理記載
           @collaboration = Collaboration.find(params[:id])
           @result = Result.find(@collaboration.result_id)
+          @target = Target.find(@result.target_id)
           @user = User.find(@collaboration.user_id)
           @collaboration_user = User.find(@result.user_id)
           # @comments = @result.comments
