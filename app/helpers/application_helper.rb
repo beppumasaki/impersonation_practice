@@ -15,8 +15,7 @@ module ApplicationHelper
         { href: image_url('maneo_face.png'), rel: 'icon', sizes: '192x192', type: 'image/png' }
       ],
       og: {
-        site_name: :site,
-        title: :title,
+        title: :site,
         description: :description,
         type: 'website',
         url: request.original_url,
