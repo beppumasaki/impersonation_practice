@@ -1,10 +1,9 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container">
+<div class="container text-muted">
   <div class='top-wrapper'>
     <div class='top-inner-text text-center', id='button'>
       <div>
-        <%= image_tag 'maneo_face.png', class:'logo d-inline-flex', size: '100x100' %>
-        <h1 class="text-center d-inline-flex p-5"><%= @target.name %></h1>
+        <h1 class="text-centerp-5 mt-5"><%= @target.name %></h1>
       </div>
       <div>
         <p class = "mt-3" id="notice" >録音ボタンを押して全力でモノマネしよう！</p>
@@ -25,6 +24,7 @@
           <%= f.hidden_field :impersonation_voice  %>
           <%= f.hidden_field :score, :value => 0  %>
         <% end %>
+        <%= image_tag 'maneo_sing.png', class:'logo d-inline-flex pr-5', size: '1200x300' %>
       </section>
     </div>
   </div>
