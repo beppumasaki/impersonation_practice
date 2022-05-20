@@ -1,5 +1,5 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container  mt-5 mb-5 pt-2">
+<div class="container text-muted mt-5 mb-5 pt-2">
   <div class='top-wrapper'>
       <div class='top-inner-text text-center', id='button'>
         <div>
@@ -13,21 +13,19 @@
           <button class = "btn btn-primary mr-2" id="rec" >録音する</button>
           <button class = "btn btn-primary mr-2" id="stop" >停止する</button>
           <button class = "btn btn-primary " id="playid" >再生する</button>
-
         </div>
         <section class="tape">
-    
-        <%= audio_tag("#{@result.impersonation_voice.url}", id: "impersonationvoice") %>
-        <audio id="play" controls></audio><br>
-        <a id ="download" href="#" type="hidden"></a>
-    
-        <button class = "btn btn-danger " id="result" >保存する</button>
-        <%= form_with url:user_result_collaborations_path(current_user, @result), id: "voiceform", local: true do |f| %>
-          <%= f.hidden_field :result_id, :value => @result.id %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :collaboration_voice  %>
-        <% end %>
-        <%= image_tag 'maneo_sing.png', class:'logo d-inline-flex pr-5', size: '1200x300' %>
+          <%= audio_tag("#{@result.impersonation_voice.url}", id: "impersonationvoice") %>
+          <audio id="play" controls></audio>
+          <a id ="download" href="#" type="hidden"></a>
+      
+          <button class = "btn btn-danger " id="result" >保存する</button>
+          <%= form_with url:user_result_collaborations_path(current_user, @result), id: "voiceform", local: true do |f| %>
+            <%= f.hidden_field :result_id, :value => @result.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :collaboration_voice  %>
+          <% end %>
+          <%= image_tag 'maneo_sing.png', class:'logo d-inline-flex pr-5', size: '1200x300' %>
         </section>
       </div>
     </div>

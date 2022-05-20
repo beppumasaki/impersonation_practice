@@ -36,14 +36,6 @@ let nowRecordingMessage = () => {
 let doneMessage = () => {
     notice.innerHTML = '録音完了！';
   }
-  
-
-// let stopRecording = () => {
-//     saveAudio();
-//     play.disabled = false;
-//     result.disabled = false;
-//     notice.innerHTML = '録音完了しました';
-// }
 
 rec.onclick = function() {
     navigator.mediaDevices.getUserMedia({
@@ -183,7 +175,6 @@ let exportWAV = function (audioData) {
 
     let myURL = window.URL || window.webkitURL;
     let url = myURL.createObjectURL(audioBlob);
-    //ここでurlをバックエンド側に作成？その後、xhr.openでurlを取りに行ってる？
     downloadLink.href = url;
 };
 

@@ -18,7 +18,7 @@
         <a id ="download" href="#" type="hidden"></a>
         <a id="stop" type="hidden"></a>
 
-        <button class = "btn btn-danger " id="result" >採点する</button>
+        <button class = "btn btn-danger" id="result" >採点する</button>
         <%= form_with url:target_results_path(@target), id: "voiceform", local: true do |f| %>
           <%= f.hidden_field :target_id, :value => @target.id %>
           <%= f.hidden_field :impersonation_voice  %>
