@@ -7,19 +7,13 @@ class CollaborationsController < ApplicationController
     end
 
     def show
-      if params[:id] == "undefined"
-        @result = Result.find(params[:result_id])
-        redirect_to user_collaborations_path(current_user)
-      else
-        #ここから処理記載
-          @collaboration = Collaboration.find(params[:id])
-          @result = Result.find(@collaboration.result_id)
-          @target = Target.find(@result.target_id)
-          @user = User.find(@collaboration.user_id)
-          @collaboration_user = User.find(@result.user_id)
-          # @comments = @result.comments
-          # @comment = Comment.new
-      end
+      @collaboration = Collaboration.find(params[:id])
+      @result = Result.find(@collaboration.result_id)
+      @target = Target.find(@result.target_id)
+      @user = User.find(@collaboration.user_id)
+      @collaboration_user = User.find(@result.user_id)
+      # @comments = @result.comments
+      # @comment = Comment.new
     end
 
     def index
@@ -53,15 +47,9 @@ class CollaborationsController < ApplicationController
       @collaboration.title = "#{current_user.name}と#{@user.name}"
       @collaboration.save
 
-      # 自動でcreate後にshowアクションが呼び出されてしまう不具合によりコメントアウト
-      # if @collaboration
-      #   redirect_to user_result_collaborations_path(current_user, @result)
-      # else
-      #   redirect_to new_user_result_collaboration_path(current_user, @result, @collaboration)
-      # end
+      render json: { url: user_result_collaboration_path(current_user, @result, @collaboration) }
 
     end
-  
 
     private
       def collaboration_params

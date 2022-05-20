@@ -19,7 +19,7 @@
                 <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
                 <ul class="list-inline">
                   <li class="list-inline-item">by <%= @user.name %></li>
-                  <li class="list-inline-item"><%= l @result.created_at, format: :short %></li>
+                  <li class="list-inline-item"><%= l @collaboration.created_at, format: :short %></li>
                 </ul>
               </div>
             </div>
