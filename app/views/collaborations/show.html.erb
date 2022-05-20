@@ -19,13 +19,20 @@
                 <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
                 <ul class="list-inline">
                   <li class="list-inline-item">by <%= @user.name %></li>
-                  <li class="list-inline-item"><%= l @result.created_at, format: :short %></li>
+                  <li class="list-inline-item"><%= l @collaboration.created_at, format: :short %></li>
                 </ul>
               </div>
             </div>
             <p><%= simple_format(@collaboration.body) %></p>
           </div>
         </article>
+        <% unless current_user.nil? %>
+          <% if @result.user_id == current_user.id %>
+            <%= link_to "https://twitter.com/share?url=#{request.url}&hashtags=ものまねお,モノマネ採点&text=#{@collaboration_user.name}さんの【#{@target.name}】とコラボしました！%0a", class: 'btn btn-primary float-right', target: '_blank' do %>
+              <i class="fab fa-twitter pe-1"></i><%= t('.share_to_twitter') %>
+            <% end %>        
+          <% end %>
+        <% end %>  
       </div>
   </div>
 </div>

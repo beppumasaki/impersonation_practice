@@ -9,6 +9,7 @@ const start = document.getElementById("start")
 const rec = document.getElementById("rec")
 const play = document.getElementById("playid")
 const notice = document.getElementById('notice');
+const stop = document.getElementById('stop');
 
 // for audio
 // let stream = null;
@@ -17,6 +18,8 @@ let scriptProcessor = null;
 let audioContext = null;
 let mediastreamsource = null;
 var timeout_id = null;
+let countDownTime = null;
+let timeout = null;
 
 // audio data
 let audioData = [];
@@ -26,12 +29,13 @@ let micBlobUrl = null;
 play.disabled = true;
 result.disabled = true;
 
-let stopRecording = () => {
-    saveAudio();
-    play.disabled = false;
-    result.disabled = false;
-    notice.innerHTML = '録音完了しました';
-}
+let nowRecordingMessage = () => {
+    notice.innerHTML = '録音中！終了まであと10秒';
+  }
+
+let doneMessage = () => {
+    notice.innerHTML = '録音完了！';
+  }
 
 rec.onclick = function() {
     navigator.mediaDevices.getUserMedia({
@@ -41,7 +45,7 @@ rec.onclick = function() {
         .then(function (stream) { // promiseのresultをaudioStreamに格納
             result.disabled = true;
             play.disabled = true;
-            notice.innerHTML = '〜録音中〜　※10秒間です';
+            rec.disabled = true;
             audioData = [];
             audioContext = new AudioContext();
             audio_sample_rate = audioContext.sampleRate;
@@ -50,9 +54,21 @@ rec.onclick = function() {
             mediastreamsource.connect(scriptProcessor);
             scriptProcessor.onaudioprocess = onAudioProcess;
             scriptProcessor.connect(audioContext.destination);
-            timeout_id = setTimeout(() => {
-                stopRecording();
-              }, 10000);
+
+            nowRecordingMessage();
+            let sec = 9;
+            countDownTime = setInterval(() => {
+              let remainingTime = sec--;
+              let string = `録音中！終了まであと${remainingTime}秒`;
+              notice.innerHTML = string;
+              if (sec === 0) {
+                clearInterval(countDownTime);
+              }
+            }, 1000);
+        
+            timeout = setTimeout(() => {
+              stop.click();
+            }, 10000);
         })
         .catch(function (error) { // error
             console.error('mediaDevice.getUserMedia() error:', error);
@@ -71,13 +87,17 @@ var onAudioProcess = function (e) {
     audioData.push(bufferData);
 };
 
-//停止ボタン
-// stop.onclick = function() {
-//     saveAudio();
-//     stop.disabled = true;
-//     play.disabled = false;
-//     result.disabled = false;  
-// }
+//停止
+stop.onclick = function() {
+    clearInterval(countDownTime);
+    clearTimeout(timeout);
+    doneMessage();
+    console.log('停止しました');
+    play.disabled = false;
+    result.disabled = false;
+    rec.disabled = false;
+    saveAudio();
+  };
 
 
 //再生
@@ -155,7 +175,6 @@ let exportWAV = function (audioData) {
 
     let myURL = window.URL || window.webkitURL;
     let url = myURL.createObjectURL(audioBlob);
-    //ここでurlをバックエンド側に作成？その後、xhr.openでurlを取りに行ってる？
     downloadLink.href = url;
 };
 

@@ -24,17 +24,20 @@ var timeout_id = null;
 let audioData = [];
 let bufferSize = 1024;
 let micBlobUrl = null;
+let countDownTime = null;
+let timeout = null;
 
 play.disabled = true;
 result.disabled = true;
 stop.disabled = true;
 
-// let stopRecording = () => {
-//     saveAudio();
-//     play.disabled = false;
-//     result.disabled = false;
-//     notice.innerHTML = '録音完了しました';
-// }
+let nowRecordingMessage = () => {
+    notice.innerHTML = 'コラボ中！終了まであと10秒';
+  }
+
+let doneMessage = () => {
+    notice.innerHTML = '録音完了！';
+  }
 
 rec.onclick = function() {
     navigator.mediaDevices.getUserMedia({
@@ -44,7 +47,7 @@ rec.onclick = function() {
         .then(function (stream) { // promiseのresultをaudioStreamに格納
             result.disabled = true;
             play.disabled = true;
-            notice.innerHTML = 'コラボ中';
+            stop.disabled = false;
             audioData = [];
             audioContext = new AudioContext();
             audio_sample_rate = audioContext.sampleRate;
@@ -54,11 +57,20 @@ rec.onclick = function() {
             scriptProcessor.onaudioprocess = onAudioProcess;
             scriptProcessor.connect(audioContext.destination);
             impersonation.play();
-            rec.disabled = true;
-            stop.disabled = false;
-            timeout_id = setTimeout(() => {
-                stop.click(); // ボタンがクリックされなければ30秒後にstopが押される
-              }, 10000);
+            nowRecordingMessage();
+            let sec = 9;
+            countDownTime = setInterval(() => {
+              let remainingTime = sec--;
+              let string = `コラボ中！終了まであと${remainingTime}秒`;
+              notice.innerHTML = string;
+              if (sec === 0) {
+                clearInterval(countDownTime);
+              }
+            }, 1000);
+        
+            timeout = setTimeout(() => {
+              stop.click();
+            }, 10000);
         })
         .catch(function (error) { // error
             console.error('mediaDevice.getUserMedia() error:', error);
@@ -79,14 +91,18 @@ var onAudioProcess = function (e) {
 
 //停止ボタン
 stop.onclick = function() {
-    saveAudio();
+    clearInterval(countDownTime);
+    clearTimeout(timeout);
+    doneMessage();
+    console.log('停止しました');
     impersonation.pause();
-    stop.disabled = true;
     play.disabled = false;
-    rec.disabled = false;
     result.disabled = false;
-    notice.innerHTML = '録音完了しました';
-}
+    rec.disabled = false;
+    stop.disabled = true;
+    saveAudio();
+  };
+
 
 
 //再生
@@ -97,13 +113,13 @@ play.onclick = function(audioBlob) {
         playback.onended = function () {
             playback.pause();
             playback.src = "";
+            rec.disabled = false;
         };
         // 再生
         playback.play();
+        rec.disabled = true;
     }
 };
-
-
 
 //WAVに変換
 let exportWAV = function (audioData) {
@@ -168,8 +184,6 @@ let exportWAV = function (audioData) {
     downloadLink.href = url;
 };
 
-
-
 //保存
 let saveAudio = function () {
     exportWAV(audioData);
@@ -181,7 +195,6 @@ let saveAudio = function () {
 result.onclick = function() {
     notice.innerHTML = '〜音声処理中〜';
     var xhr = new XMLHttpRequest();
-    // バックエンドから情報を取ってきてる？
     xhr.open('GET', document.querySelector('#download').href, true);
     xhr.responseType = 'blob';
     xhr.send();

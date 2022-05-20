@@ -42,6 +42,7 @@ ja:
   collaborations:
     show:
       title: 'コラボ詳細'
+      share_to_twitter: 'コラボをシェア'
     edit:
       title: 'コラボを公開する？'
     index:

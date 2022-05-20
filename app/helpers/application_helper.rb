@@ -7,7 +7,7 @@ module ApplicationHelper
       charset: 'utf-8',
       description: 'あなたのモノマネを点数化します！目指せモノマネ王（ものまねお）！',
       keywords: 'ものまねお,モノマネ,モノマネ王',
-      canonical: 'https://www.monomaneo.com',
+      canonical: request.original_url,
       separator: '|',
       viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
       icon: [
@@ -15,12 +15,11 @@ module ApplicationHelper
         { href: image_url('maneo_face.png'), rel: 'icon', sizes: '192x192', type: 'image/png' }
       ],
       og: {
-        site_name: :site,
-        title: :title,
+        title: :site,
         description: :description,
         type: 'website',
-        url: 'https://www.monomaneo.com',
-        image: image_url('monomaneo_top.png'),
+        url: request.original_url,
+        image: image_url('monomaneo_card.png'),
         locale: 'ja_JP'
       },
       twitter: {
