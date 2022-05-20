@@ -11,12 +11,12 @@
 
       <div class="mt-4 mb-5">
         <button class = "btn btn-primary mr-2" id="rec" >録音する</button>
-        <%# <button class = "btn btn-primary" id="stop" >録音停止</button> %>
         <button class = "btn btn-primary ms-2" id="playid" >再生する</button>
       </div>
       <section class="tape">
         <audio id="play" controls></audio>
         <a id ="download" href="#" type="hidden"></a>
+        <a id="stop" type="hidden"></a>
 
         <button class = "btn btn-danger " id="result" >採点する</button>
         <%= form_with url:target_results_path(@target), id: "voiceform", local: true do |f| %>
