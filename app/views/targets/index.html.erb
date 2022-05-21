@@ -1,11 +1,13 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container text-muted mt-5">
-  <%= image_tag 'maneo_face.png', class:'logo d-inline-flex', size: '100x100' %>
-  <h1 class="text-center d-inline-flex p-5">モノマネするお題を選択してください</h1>
+<div class="container text-muted mt-3">
+  <div class="center-block">
+    <%= image_tag 'maneo_choice.png', class:'logo mx-auto d-block', size: '100x50' %>
+    <h1 class="text-center mt-1">モノマネするお題を選択してください</h1>
+  </div>
   <div class="targets-wrapper">
     <div class="top-cards pt-5 pb-4">
       <!-- ターゲット一覧 -->
-        <div class="row">
+        <div class="row justify-content-center">
           <% if @targets.present? %>
             <%= render partial: 'target', collection: @targets %>
           <% else %>

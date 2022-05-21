@@ -6,8 +6,8 @@
         <%= link_to edit_user_path, class: 'btn btn-primary float-right' do %>
          <i class="fa-regular fa-pen-to-square"></i>
         <% end %>
-        <%= link_to t('collaborations.index.title'), user_collaborations_path(current_user), class:"btn btn-primary float-right mr-3" %>
-        <%= link_to t('results.index.title'), user_results_path(current_user), class:"btn btn-primary float-right mr-3" %>
+        <%= link_to t('collaborations.index.title'), user_collaborations_path(current_user), class:"btn btn-primary float-right mr-3 mb-5" %>
+        <%= link_to t('results.index.title'), user_results_path(current_user), class:"btn btn-primary float-right mr-3 mb-5" %>
       <table class="table">
         <tr>
           <th scope="row"><%= User.human_attribute_name(:email) %></th>
