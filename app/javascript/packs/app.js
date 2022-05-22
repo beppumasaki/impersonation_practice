@@ -33,7 +33,7 @@ let nowRecordingMessage = () => {
   }
 
 let doneMessage = () => {
-    notice.innerHTML = '録音完了！';
+    notice.innerHTML = ' 録音完了！';
   }
 
 rec.onclick = function() {
@@ -93,7 +93,6 @@ stop.onclick = function() {
     result.classList.remove('d-none');
     play.classList.remove('invisible');
     restart.classList.remove('invisible');
-
     saveAudio();
   };
 
