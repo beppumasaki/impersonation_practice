@@ -10,6 +10,7 @@ const rec = document.getElementById("rec")
 const play = document.getElementById("playid")
 const notice = document.getElementById('notice');
 const stop = document.getElementById('stop');
+const restart = document.getElementById('restart');
 
 // for audio
 // let stream = null;
@@ -26,8 +27,6 @@ let audioData = [];
 let bufferSize = 1024;
 let micBlobUrl = null;
 
-play.disabled = true;
-result.disabled = true;
 
 let nowRecordingMessage = () => {
     notice.innerHTML = '録音中！終了まであと10秒';
@@ -43,8 +42,6 @@ rec.onclick = function() {
         audio: true
     })
         .then(function (stream) { // promiseのresultをaudioStreamに格納
-            result.disabled = true;
-            play.disabled = true;
             rec.disabled = true;
             audioData = [];
             audioContext = new AudioContext();
@@ -74,7 +71,6 @@ rec.onclick = function() {
             console.error('mediaDevice.getUserMedia() error:', error);
             return;
         });
-    result.disabled = false;
 };
 
 // save audio data //1024bitのバッファサイズに達するごとにaudioDataにデータを追加する
@@ -93,9 +89,11 @@ stop.onclick = function() {
     clearTimeout(timeout);
     doneMessage();
     console.log('停止しました');
-    play.disabled = false;
-    result.disabled = false;
-    rec.disabled = false;
+    rec.classList.add('d-none');
+    result.classList.remove('d-none');
+    play.classList.remove('invisible');
+    restart.classList.remove('invisible');
+
     saveAudio();
   };
 

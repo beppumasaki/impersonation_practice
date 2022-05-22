@@ -3,27 +3,31 @@
   <div class='top-wrapper'>
     <div class='top-inner-text text-center', id='button'>
       <div>
-        <h1 class="text-centerp-5 mt-5"><%= @target.name %></h1>
+        <h1 class="text-center mt-5"><%= @target.name %></h1>
       </div>
       <div>
         <p class = "mt-3" id="notice" >録音ボタンを押して全力でモノマネしよう！</p>
       </div>
 
-      <div class="mt-4 mb-5">
-        <button class = "btn btn-primary mr-2" id="rec" >録音する</button>
-        <button class = "btn btn-primary ms-2" id="playid" >再生する</button>
+      <div class="mt-5 mb-4">
+        <button class = "btn btn-primary btn-lg" id="rec" >録音する</button>
+        <button class = "btn btn-danger btn-lg d-none" id="result">採点する</button>
+            <%= form_with url:target_results_path(@target), id: "voiceform", local: true do |f| %>
+              <%= f.hidden_field :target_id, :value => @target.id %>
+              <%= f.hidden_field :impersonation_voice  %>
+              <%= f.hidden_field :score, :value => 0  %>
+            <% end %>
       </div>
       <section class="tape">
-        <audio id="play" controls></audio>
-        <a id ="download" href="#" type="hidden"></a>
-        <a id="stop" type="hidden"></a>
-
-        <button class = "btn btn-danger" id="result" >採点する</button>
-        <%= form_with url:target_results_path(@target), id: "voiceform", local: true do |f| %>
-          <%= f.hidden_field :target_id, :value => @target.id %>
-          <%= f.hidden_field :impersonation_voice  %>
-          <%= f.hidden_field :score, :value => 0  %>
-        <% end %>
+        <div class="sound-clips my-2">
+          <audio id="play" controls></audio>
+          <a id ="download" href="#" type="hidden"></a>
+          <a id="stop" type="hidden"></a>
+        </div>
+        <div class="row justify-content-center pt-2">
+            <button class = "col-2 btn btn-primary mr-3 invisible" id="playid" >再生する</button>
+            <%= link_to "やり直す", request.path_info, id: "restart", class: "col-2 btn btn-primary ms-3 invisible" %>
+        </div>
         <%= image_tag 'maneo_sing.png', class:'target-logo mx-auto d-block', size: '1200x300' %>
       </section>
     </div>
