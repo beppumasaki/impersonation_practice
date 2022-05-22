@@ -1,5 +1,5 @@
 <% set_meta_tags title: t('.title') %>
-<div class="container text-muted mt-5 mb-5 pt-2">
+<div class="container text-muted mt-5 mb-5">
   <div class='top-wrapper'>
       <div class='top-inner-text text-center', id='button'>
         <div>
@@ -10,21 +10,26 @@
         </div>
     
         <div class="mt-4 mb-5">
-          <button class = "btn btn-primary mr-2" id="rec" >録音する</button>
-          <button class = "btn btn-primary mr-2" id="stop" >停止する</button>
-          <button class = "btn btn-primary " id="playid" >再生する</button>
-        </div>
-        <section class="tape">
-          <%= audio_tag("#{@result.impersonation_voice.url}", id: "impersonationvoice") %>
-          <audio id="play" controls></audio>
-          <a id ="download" href="#" type="hidden"></a>
-      
-          <button class = "btn btn-danger " id="result" >保存する</button>
+         <button class = "btn btn-primary btn-lg" id="rec" >録音する</button>
+         <button class = "btn btn-danger btn-lg d-none" id="result" >保存する</button>
           <%= form_with url:user_result_collaborations_path(current_user, @result), id: "voiceform", local: true do |f| %>
             <%= f.hidden_field :result_id, :value => @result.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :collaboration_voice  %>
           <% end %>
+
+        </div>
+        <section class="tape">
+          <div class="sound-clips my-2">
+            <%= audio_tag("#{@result.impersonation_voice.url}", id: "impersonationvoice") %>
+            <audio id="play" controls></audio>
+            <a id ="download" href="#" type="hidden"></a>
+          </div>
+          <div class="row justify-content-center pt-2">
+            <button class = "col-1 btn btn-info" id="stop">停止する</button>
+            <button class = "col-2 btn btn-primary mr-3 d-none" id="playid" >再生する</button>
+            <%= link_to "やり直す", request.path_info, id: "restart", class: "col-2 btn btn-primary ms-3 d-none" %>
+          </div>
           <%= image_tag 'maneo_sing.png', class:'target-logo mx-auto d-block', size: '1200x300' %>
         </section>
       </div>

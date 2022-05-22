@@ -11,6 +11,7 @@ const rec = document.getElementById("rec")
 const stop = document.getElementById("stop")
 const play = document.getElementById("playid")
 const notice = document.getElementById('notice');
+const restart = document.getElementById('restart');
 
 // for audio
 // let stream = null;
@@ -27,10 +28,6 @@ let micBlobUrl = null;
 let countDownTime = null;
 let timeout = null;
 
-play.disabled = true;
-result.disabled = true;
-stop.disabled = true;
-
 let nowRecordingMessage = () => {
     notice.innerHTML = 'コラボ中！終了まであと10秒';
   }
@@ -45,9 +42,7 @@ rec.onclick = function() {
         audio: true
     })
         .then(function (stream) { // promiseのresultをaudioStreamに格納
-            result.disabled = true;
-            play.disabled = true;
-            stop.disabled = false;
+            rec.disabled = true;
             audioData = [];
             audioContext = new AudioContext();
             audio_sample_rate = audioContext.sampleRate;
@@ -76,7 +71,6 @@ rec.onclick = function() {
             console.error('mediaDevice.getUserMedia() error:', error);
             return;
         });
-    result.disabled = false;
 };
 
 // save audio data //1024bitのバッファサイズに達するごとにaudioDataにデータを追加する
@@ -96,10 +90,11 @@ stop.onclick = function() {
     doneMessage();
     console.log('停止しました');
     impersonation.pause();
-    play.disabled = false;
-    result.disabled = false;
-    rec.disabled = false;
-    stop.disabled = true;
+    rec.classList.add('d-none');
+    stop.classList.add('d-none');
+    result.classList.remove('d-none');
+    play.classList.remove('d-none');
+    restart.classList.remove('d-none');
     saveAudio();
   };
 
@@ -117,7 +112,6 @@ play.onclick = function(audioBlob) {
         };
         // 再生
         playback.play();
-        rec.disabled = true;
     }
 };
 
