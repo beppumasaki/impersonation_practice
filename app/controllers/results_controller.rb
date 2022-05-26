@@ -6,8 +6,6 @@ class ResultsController < ApplicationController
     @target = Target.find(@result.target_id)
     @user = User.find(@result.user_id)
     @comments = @result.comments
-    @comment = Comment.new
-
   end
 
   def index

@@ -12,8 +12,7 @@ class CollaborationsController < ApplicationController
       @target = Target.find(@result.target_id)
       @user = User.find(@collaboration.user_id)
       @collaboration_user = User.find(@result.user_id)
-      # @comments = @result.comments
-      # @comment = Comment.new
+      @collaboration_comments = CollaborationComment.where(collaboration_id: @collaboration.id)
     end
 
     def index

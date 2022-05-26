@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_000349) do
+ActiveRecord::Schema.define(version: 2022_05_26_052407) do
+
+  create_table "collaboration_comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "user_id", null: false
+    t.integer "collaboration_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collaboration_id"], name: "index_collaboration_comments_on_collaboration_id"
+    t.index ["user_id"], name: "index_collaboration_comments_on_user_id"
+  end
 
   create_table "collaborations", force: :cascade do |t|
     t.string "title"
@@ -85,6 +95,8 @@ ActiveRecord::Schema.define(version: 2022_04_25_000349) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "collaboration_comments", "collaborations"
+  add_foreign_key "collaboration_comments", "users"
   add_foreign_key "collaborations", "results"
   add_foreign_key "collaborations", "users"
   add_foreign_key "comments", "results"

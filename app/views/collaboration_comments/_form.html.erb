@@ -1,0 +1,12 @@
+<div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+        <%= form_with url: user_result_collaboration_collaboration_comments_path(current_user, result, collaboration), id: 'new_collaboration_comment' do |f| %>
+            <%= f.label "コメント" %>
+            <%= f.text_area :body, class: 'form-control mb-3', rows: 2 %>
+            <%= f.submit 'コメントする', class: 'btn btn-primary' %>
+        <% end %>
+    </div>
+</div>
+
+
+<%# <%= form_with model: comment, url: [board, comment], id: 'new_comment' do |f| %>
