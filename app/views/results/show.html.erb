@@ -51,5 +51,5 @@
   <%= render 'comments/comments', { comments: @comments } if Comment.where(result_id: @result.id).count > 0 %> 
 <!-- コメントフォーム -->
   <%= render 'comments/form', { result: @result, comment: @comment } if logged_in? %>
-  <h4 class= "text-center" ><%= link_to 'お題を選ぶ', targets_path, class: "link" %></h4>
+  <h4 class= "text-center py-3" ><%= link_to 'お題を選ぶ', targets_path, class: "link" %></h4>
 </div>
