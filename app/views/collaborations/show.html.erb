@@ -35,4 +35,8 @@
         <% end %>  
       </div>
   </div>
+  <!-- コメントエリア -->
+  <%= render 'collaboration_comments/collaboration_comments', { collaboration_comments: @collaboration_comments } if CollaborationComment.where(collaboration_id: @collaboration.id).count > 0 %> 
+ <!-- コメントフォーム -->
+  <%= render 'collaboration_comments/form', { collaboration: @collaboration, collaboration_comment: @collaboration_comment, result: @result } if logged_in? %>
 </div>

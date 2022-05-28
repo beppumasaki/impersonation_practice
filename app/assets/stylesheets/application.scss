@@ -29,7 +29,7 @@ header {
 
 nav.navbar {
     min-height: 38px;
-    background-color: #1F80DA;
+    background-color: #2f79bd;
     background-image: none;
   }
   
@@ -40,7 +40,7 @@ nav.navbar {
 }
 
 footer {
-  background-color: #1F80DA;
+  background-color: #2f79bd;
   background-image: none;
   width: 100%;
   overflow: hidden;
@@ -57,6 +57,27 @@ footer {
   background: #4A6E9D;
   color: #EFF0F4;
   border-color: #4A6E9D;
+  border-radius:30px;
+}
+
+.fa-hand-paper {
+  color: #4A6E9D;
+  font-size: 40px;
+}
+
+
+.btn-danger {
+  color: #EFF0F4;
+  background: #c53b54;
+  border-color: #c53b54;
+  border-radius:30px;
+}
+
+.btn-info {
+  background: #00946f;
+  color: #EFF0F4;
+  border-color: #00946f;
+  border-radius:30px;
 }
 
 .thead-primary {
@@ -88,3 +109,9 @@ footer {
   max-width: 1200px;
   height: auto;
   }
+
+.top-button {
+  width: 7em;
+  height: 4em;
+  border-radius:100%;
+}

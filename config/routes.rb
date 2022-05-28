@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show edit update] do
     resources :collaborations, only: %i[index]
     resources :results, only: %i[index show edit update destroy] do
-      resources :collaborations, only: %i[create destroy update new show edit]
+      resources :collaborations, only: %i[create destroy update new show edit] do
+        resources :collaboration_comments, only: %i[create destroy]
+      end
       resources :comments, only: %i[create destroy]
     end
   end

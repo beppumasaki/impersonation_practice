@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :results, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :collaborations, dependent: :destroy
+  has_many :collaboration_comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_votes, through: :likes, source: :vote
