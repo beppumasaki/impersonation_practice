@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_26_052407) do
+ActiveRecord::Schema.define(version: 2022_05_28_004534) do
 
   create_table "collaboration_comments", force: :cascade do |t|
     t.string "body"
@@ -68,6 +68,22 @@ ActiveRecord::Schema.define(version: 2022_05_26_052407) do
     t.index ["user_id"], name: "index_results_on_user_id"
   end
 
+  create_table "tag_relationships", force: :cascade do |t|
+    t.integer "target_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
+    t.index ["target_id", "tag_id"], name: "index_tag_relationships_on_target_id_and_tag_id", unique: true
+    t.index ["target_id"], name: "index_tag_relationships_on_target_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "targets", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -105,5 +121,7 @@ ActiveRecord::Schema.define(version: 2022_05_26_052407) do
   add_foreign_key "likes", "votes"
   add_foreign_key "results", "targets"
   add_foreign_key "results", "users"
+  add_foreign_key "tag_relationships", "tags"
+  add_foreign_key "tag_relationships", "targets"
   add_foreign_key "votes", "users"
 end
