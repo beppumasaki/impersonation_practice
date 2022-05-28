@@ -12,6 +12,10 @@
           <%= f.label :target_voice, class: "text-info" %><br>
           <%= f.file_field :target_voice, class: "form-control" %>
         </div>
+        <div class="field">
+          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+          <%= text_field :tag, :name, value: @tag_list, class:"form-control"%>
+        </div>
         <div class="actions">
           <%= f.submit '新規作成', class: "btn btn-primary" %>
         </div>

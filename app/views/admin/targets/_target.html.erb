@@ -5,4 +5,7 @@
   <td class='align-middle'>
     <%= link_to t('defaults.show'), admin_target_path(target), class: 'btn btn-info' %>
   </td>
+  <td class='align-middle'>
+    <i class="fas fa-tag"><%= target.tags.map(&:name).join(', ') %></i>
+  </td>
 </tr>

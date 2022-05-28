@@ -10,6 +10,11 @@
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
+        <div class="field">
+          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+          <%= text_field :tag, :name, value: @tag_list, class:"form-control"%>
+        </div>
+
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>

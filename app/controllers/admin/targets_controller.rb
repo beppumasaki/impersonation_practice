@@ -2,23 +2,30 @@ class Admin::TargetsController < Admin::BaseController
 
       def show
         @target = Target.find(params[:id])
+        @tag_relationships = @target.tags
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def index
         @targets = Target.order(created_at: :desc)
+        @tag_list=Tag.all
       end
     
       def new
         @target = Target.new
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def edit
         @target = Target.find(params[:id])
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def update
         @target = Target.find(params[:id])
+        tag_list=params[:tag][:name].split(',')
         if @target.update(target_params)
+          @target.save_tag(tag_list)
           redirect_to admin_target_path(@target)
         else
           render :edit
@@ -28,21 +35,21 @@ class Admin::TargetsController < Admin::BaseController
       def destroy
         @target = Target.find(params[:id])
        #apiのprofileも削除
-        destroy_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}"
+        # destroy_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}"
     
-        destroy_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
-          f.request :multipart
-          f.request :json
-          f.response :logger
-          f.adapter Faraday.default_adapter
-        end
+        # destroy_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
+        #   f.request :multipart
+        #   f.request :json
+        #   f.response :logger
+        #   f.adapter Faraday.default_adapter
+        # end
     
-        destroy_response = destroy_connection.delete do |destroy_req|
-          destroy_req.url destroy_url
-          destroy_req.headers = {
-            'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey]
-          }
-        end
+        # destroy_response = destroy_connection.delete do |destroy_req|
+        #   destroy_req.url destroy_url
+        #   destroy_req.headers = {
+        #     'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey]
+        #   }
+        # end
     
         @target.destroy
         redirect_to admin_targets_path
@@ -51,28 +58,29 @@ class Admin::TargetsController < Admin::BaseController
       def create
         @target = Target.new(target_params)
         #profile作成
-        create_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
-          f.request :multipart
-          f.request :json
-          f.response :logger
-          f.adapter Faraday.default_adapter
-        end
+        # create_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
+        #   f.request :multipart
+        #   f.request :json
+        #   f.response :logger
+        #   f.adapter Faraday.default_adapter
+        # end
     
-        create_response = create_connection.post do |create_req|
-          create_req.url '/speaker/identification/v2.0/text-independent/profiles'
-          create_req.headers = {
-            'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
-            'Content-Type': 'application/json'
-          }
-          create_req.body = {
-            locale: "en-us"
-          }
-        end
-        hash = JSON.parse(create_response.body)
-        @target.profile_id = hash["profileId"]
-    
+        # create_response = create_connection.post do |create_req|
+        #   create_req.url '/speaker/identification/v2.0/text-independent/profiles'
+        #   create_req.headers = {
+        #     'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
+        #     'Content-Type': 'application/json'
+        #   }
+        #   create_req.body = {
+        #     locale: "en-us"
+        #   }
+        # end
+        # hash = JSON.parse(create_response.body)
+        # @target.profile_id = hash["profileId"]
+        @target.profile_id = 00000
+        tag_list=params[:tag][:name].split(',')
         if @target.save
-
+          @target.save_tag(tag_list)
         #profileの登録
 
         if Rails.env.production?
@@ -81,24 +89,24 @@ class Admin::TargetsController < Admin::BaseController
           voice = "/Users/beppumasaki/workspace/my_app/impersonation_practice/public" + URI.decode_www_form_component("#{@target.target_voice.url}") # 本番環境以外
         end
 
-        enrollments_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}/enrollments"
+        # enrollments_url = "/speaker/identification/v2.0/text-independent/profiles/#{@target.profile_id}/enrollments"
     
-        enrollments_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
-          f.request :multipart
-          f.request :url_encoded
-          f.response :logger
-          f.adapter Faraday.default_adapter
-        end
+        # enrollments_connection = Faraday.new(url: 'https://westus.api.cognitive.microsoft.com') do |f|
+        #   f.request :multipart
+        #   f.request :url_encoded
+        #   f.response :logger
+        #   f.adapter Faraday.default_adapter
+        # end
     
-        enrollments_response = enrollments_connection.post do |enrollments_req|
-          enrollments_req.url enrollments_url 
-          enrollments_req.headers = {
-          'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
-          'Content-Type': 'audio/wav',
-          'Transfer-Encoding': 'chunked'
-          }
-          enrollments_req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
-        end
+        # enrollments_response = enrollments_connection.post do |enrollments_req|
+        #   enrollments_req.url enrollments_url 
+        #   enrollments_req.headers = {
+        #   'Ocp-Apim-Subscription-Key': Rails.application.credentials[:apiKey],
+        #   'Content-Type': 'audio/wav',
+        #   'Transfer-Encoding': 'chunked'
+        #   }
+        #   enrollments_req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
+        # end
 
         # if @target.save
           redirect_to admin_targets_path
