@@ -78,9 +78,7 @@ class Admin::TargetsController < Admin::BaseController
         # hash = JSON.parse(create_response.body)
         # @target.profile_id = hash["profileId"]
         @target.profile_id = 00000
-        tag_list=params[:tag][:name].split(',')
         if @target.save
-          @target.save_tag(tag_list)
         #profileの登録
 
         if Rails.env.production?
@@ -118,7 +116,7 @@ class Admin::TargetsController < Admin::BaseController
       private
     
       def target_params
-        params.require(:target).permit(:name, :target_voice)
+        params.require(:target).permit(:name, :target_voice, tag_ids: [])
       end
 
 end

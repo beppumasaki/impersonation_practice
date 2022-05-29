@@ -1,0 +1,9 @@
+<tr>
+  <td class='align-middle'><%= tag.id %></td>
+  <td class='align-middle'><%= tag.name %></td>
+  <td class='align-middle'><%= tag.targets.count %></td>
+  <td class='align-middle'>
+    <%= link_to t('defaults.edit'), edit_admin_tag_path(tag), class: 'btn btn-info mr-2' %>
+    <%= link_to t('defaults.delete'),admin_tag_path(tag), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger' %>
+  </td>
+</tr>

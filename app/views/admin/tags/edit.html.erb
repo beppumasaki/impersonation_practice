@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <h1>タグの編集</h1>
+      <div class="text-right">
+        <%= link_to t('defaults.back'), admin_tags_path, class: 'btn btn-secondary' %>
+      </div>
+      <%= form_with model: @tag, url: admin_tag_path(@tag), local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <%= f.submit class: 'btn btn-primary mb-5' %>
+      <% end %>
+      <table class="table table-bordered bg-white">
+        <p>タグ付けされているお題</p>
+        <td><%= @tag_list %></td>
+      </table>
+    </div>
+  </div>
+</div>
