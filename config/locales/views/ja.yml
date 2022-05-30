@@ -29,6 +29,8 @@ ja:
       title: 'お題選択'
     show:
       title: '録音する'
+    search_tag:
+      title: 'お題選択'
 
   results:
     show:
