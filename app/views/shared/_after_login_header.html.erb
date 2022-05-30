@@ -11,10 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "プロフィール", user_path(current_user), class: "nav-link" %>
+          <%= link_to "モノマネする", targets_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "お題総選挙", votes_path, class: "nav-link" %>
@@ -30,8 +27,16 @@
             <li><%= link_to "ランキング", ranks_path, class:"dropdown-item" %></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <%= link_to "モノマネする", targets_path, class: "nav-link" %>
+      </ul>
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user mr-2"></i><%= "#{current_user.name}さん" %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "プロフィール", user_path(current_user), class: "dropdown-item" %></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete, class:"dropdown-item" %></li>
+          </ul>
         </li>
       </ul>
     </div>
