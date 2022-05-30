@@ -3,10 +3,13 @@
   <div class="text-right">
     <%= link_to "新規作成", new_admin_target_path, class: 'btn btn-success' %>
   </div>
-  <div class="row">
-    <div class="col-md-12 mb-3">
-    </div>
-  </div>
+
+  <!--タグリスト-->
+    <% @tag_list.each do |list|%>
+      <%=list.name %>
+      <%="(#{list.targets.count})" %>
+    <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <table class="table table-striped">
@@ -15,17 +18,14 @@
           <th scope="col"><%= Target.human_attribute_name(:id) %></th>
           <th scope="col"><%= Target.human_attribute_name(:name) %></th>
           <th scope="col"><%= Target.human_attribute_name(:profile_id) %></th>
+          <th scope="col"><%= Target.human_attribute_name(:show) %></th>
+          <th scope="col"><%= Target.human_attribute_name(:tag) %></th>
         </tr>
         </thead>
         <tbody>
           <%= render @targets %>
         </tbody>
       </table>
-    </div>
-  </div>
-  <div class="row mb-5">
-    <div class="col-md-12">
-      <!-- ページネーション -->
     </div>
   </div>
 </div>

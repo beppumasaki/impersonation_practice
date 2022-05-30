@@ -10,16 +10,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to "ログイン", login_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "新規登録", new_user_path, class: "nav-link" %>
+          <%= link_to "モノマネする", targets_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "公開中のモノマネ", boards_path, class: "nav-link" %>
         </li>
+      </ul>
+      <ul class="navbar-nav ml-auto mb-lg-0">
         <li class="nav-item">
-          <%= link_to "モノマネする", targets_path, class: "nav-link" %>
+          <%= link_to "新規登録", new_user_path, class: "nav-link btn btn-primary mr-3" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", login_path, class: "nav-link btn btn-primary" %>
         </li>
       </ul>
     </div>

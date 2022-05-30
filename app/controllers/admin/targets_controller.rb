@@ -2,18 +2,23 @@ class Admin::TargetsController < Admin::BaseController
 
       def show
         @target = Target.find(params[:id])
+        @tag_relationships = @target.tags
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def index
         @targets = Target.order(created_at: :desc)
+        @tag_list=Tag.all
       end
     
       def new
         @target = Target.new
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def edit
         @target = Target.find(params[:id])
+        @tag_list = @target.tags.pluck(:name).join(',')
       end
     
       def update
@@ -70,9 +75,7 @@ class Admin::TargetsController < Admin::BaseController
         end
         hash = JSON.parse(create_response.body)
         @target.profile_id = hash["profileId"]
-    
         if @target.save
-
         #profileの登録
 
         if Rails.env.production?
@@ -100,7 +103,6 @@ class Admin::TargetsController < Admin::BaseController
           enrollments_req.body = Faraday::Multipart::FilePart.new(voice, 'audio/wav')
         end
 
-        # if @target.save
           redirect_to admin_targets_path
         else
           render :new
@@ -110,7 +112,7 @@ class Admin::TargetsController < Admin::BaseController
       private
     
       def target_params
-        params.require(:target).permit(:name, :target_voice)
+        params.require(:target).permit(:name, :target_voice, tag_ids: [])
       end
 
 end

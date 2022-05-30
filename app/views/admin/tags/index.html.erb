@@ -1,0 +1,30 @@
+<div class="container mb-5 pt-2">
+  <h1>タグ一覧</h1>
+  <div class="text-right">
+    <%= link_to "新規作成", new_admin_tag_path, class: 'btn btn-success' %>
+  </div>
+
+  <!--タグリスト-->
+    <% @tags.each do |list|%>
+      <%=list.name %>
+      <%="(#{list.targets.count})" %>
+    <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col"><%= Tag.human_attribute_name(:id) %></th>
+          <th scope="col"><%= Tag.human_attribute_name(:name) %></th>
+          <th scope="col">タグ付けお題数</th>
+          <th scope="col">編集</th>
+        </tr>
+        </thead>
+        <tbody>
+          <%= render @tags %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

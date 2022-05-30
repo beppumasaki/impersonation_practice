@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   get '/info', to: 'static_pages#info'
   get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/impersonation-book/sitemaps/sitemap.xml.gz")
+  get 'search_tag', to: 'targets#search_tag'
 
   resources :users, only: %i[new create show edit update] do
     resources :collaborations, only: %i[index]
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'user_sessions#destroy'
     resources :users, only: %i[index edit update show destroy]
     resources :targets, only: %i[create new index edit update show destroy]
+    resources :tags, only: %i[create new index edit update destroy]
   end
 
 end

@@ -27,6 +27,11 @@
           <th scope="row"><%= Target.human_attribute_name(:created_at) %></th>
           <td><%= l @target.created_at, format: :short %></td>
         </tr>
+        <tr>
+          <th scope="row"><%= Target.human_attribute_name(:tag) %></th>
+          <td><%= @tag_list %></td>
+        </tr>
+
       </table>
       <div class="text-left mb-3">
         <%= link_to t('defaults.back'), admin_targets_path, class: 'btn btn-secondary' %>

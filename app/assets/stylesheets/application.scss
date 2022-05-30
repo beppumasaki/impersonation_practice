@@ -29,7 +29,7 @@ header {
 
 nav.navbar {
     min-height: 38px;
-    background-color: #2f79bd;
+    background-color: #0094f7;
     background-image: none;
   }
   
@@ -40,7 +40,7 @@ nav.navbar {
 }
 
 footer {
-  background-color: #2f79bd;
+  background-color: #0094f7;
   background-image: none;
   width: 100%;
   overflow: hidden;
@@ -48,12 +48,16 @@ footer {
 
 .content {
   min-height: calc(100vh - 55px);
-  // background-image: image-url('monomane_man2.png');
-  // background-size: cover;
-  // filter: blur(6px);
 }
 
 .btn-primary {
+  background: #4A6E9D;
+  color: #EFF0F4;
+  border-color: #4A6E9D;
+  border-radius:30px;
+}
+
+.badge-primary {
   background: #4A6E9D;
   color: #EFF0F4;
   border-color: #4A6E9D;
@@ -74,9 +78,9 @@ footer {
 }
 
 .btn-info {
-  background: #00946f;
+  background: #01bd8e;
   color: #EFF0F4;
-  border-color: #00946f;
+  border-color: #01bd8e;
   border-radius:30px;
 }
 
