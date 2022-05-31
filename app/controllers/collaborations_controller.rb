@@ -1,5 +1,7 @@
 class CollaborationsController < ApplicationController
    skip_before_action :require_login, only: %i[show]
+   before_action :set_collaboration, only: %i[show edit update destroy]
+   before_action :set_result, only: %i[show edit]
     
     def new
       @collaboration = Collaboration.new(collaboration_params)
@@ -7,8 +9,6 @@ class CollaborationsController < ApplicationController
     end
 
     def show
-      @collaboration = Collaboration.find(params[:id])
-      @result = Result.find(@collaboration.result_id)
       @target = Target.find(@result.target_id)
       @user = User.find(@collaboration.user_id)
       @collaboration_user = User.find(@result.user_id)
@@ -20,20 +20,16 @@ class CollaborationsController < ApplicationController
     end
 
     def edit
-      @collaboration = Collaboration.find(params[:id])
-      @result = Result.find(@collaboration.result_id)
       @user = User.find(@collaboration.user_id)
       @collaboration_user = User.find(@result.user_id)
     end
   
     def destroy
-      @collaboration = Collaboration.find(params[:id])
       @collaboration.destroy
       redirect_to user_collaborations_path(current_user)
     end
   
     def update
-      @collaboration = Collaboration.find(params[:id])
       @collaboration.update(update_collaboration_params)
       redirect_to user_collaborations_path(current_user)
     end
@@ -47,12 +43,20 @@ class CollaborationsController < ApplicationController
       @collaboration.save
 
       render json: { url: user_result_collaboration_path(current_user, @result, @collaboration) }
-
     end
 
     private
-      def collaboration_params
-        params.permit(:result_id, :user_id, :collaboration_voice)
+
+    def set_collaboration
+      @collaboration = Collaboration.find(params[:id])
+    end
+
+    def set_result
+      @result = Result.find(@collaboration.result_id)
+    end
+
+    def collaboration_params
+      params.permit(:result_id, :user_id, :collaboration_voice)
     end
 
     def update_collaboration_params
