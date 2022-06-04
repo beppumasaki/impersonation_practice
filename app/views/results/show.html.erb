@@ -37,13 +37,9 @@
           <p><%= simple_format(@result.body) %></p>
         </div>
       </article>
-        <% unless current_user.nil? %>
-          <% if @result.user_id == current_user.id %>
-            <%= link_to "https://twitter.com/share?url=#{request.url}&hashtags=ものまねお,モノマネ採点&text=【#{@target.name}】に挑戦しました！%0a%0a結果は… #{@result.score}点/100点でした！%0aコラボ待ってます！%0a%0a", class: 'btn btn-primary float-right', target: '_blank' do %>
-              <i class="fab fa-twitter pe-1"></i><%= t('.share_to_twitter') %>
-            <% end %>          
-          <% end %>
-        <% end %>  
+        <%= link_to "https://twitter.com/share?url=#{request.url}&hashtags=ものまねお,モノマネ採点&text=【#{@target.name}】に挑戦しました！%0a%0a結果は… #{@result.score}点/100点でした！%0aコラボ待ってます！%0a%0a", class: 'btn btn-primary float-right', target: '_blank' do %>
+          <i class="fab fa-twitter pe-1"></i><%= t('.share_to_twitter') %>
+        <% end %>          
     </div>
   </div>
 
