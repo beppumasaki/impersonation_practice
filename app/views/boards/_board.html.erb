@@ -7,6 +7,6 @@
       <p class="card-text">by <%= User.find(board.user_id).name %></p>
       <%=audio_tag("#{board.impersonation_voice.url}", controls: true) %>
       <p class="card-text"><%= board.body %></p>
-       <%= link_to "もっと見る", user_result_path(user, result), class: 'btn btn-info float-right' %>
+       <%= link_to "もっと見る", result_path(result), class: 'btn btn-info float-right' %>
     </div>
 </div>

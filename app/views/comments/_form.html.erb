@@ -1,12 +1,11 @@
 <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
-        <%= form_with url: user_result_comments_path(current_user, result), id: 'new_comment' do |f| %>
+        <%= form_with model: comment, url: result_comments_path(result), id: 'new_comment' do |f| %>
             <%= f.label "コメント" %>
             <%= f.text_area :body, class: 'form-control mb-3', rows: 2 %>
+            <%= f.hidden_field :result_id, :value => result.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.submit 'コメントする', class: 'btn btn-primary' %>
         <% end %>
     </div>
 </div>
-
-
-<%# <%= form_with model: comment, url: [board, comment], id: 'new_comment' do |f| %>

@@ -5,7 +5,7 @@
     
     <% if logged_in? && current_user.own?(collaboration_comment) %>
         <td class="action">
-            <%= link_to user_result_collaboration_collaboration_comment_path(current_user, result, collaboration, collaboration_comment), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
+            <%= link_to collaboration_collaboration_comment_path(collaboration, collaboration_comment), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
               <i class="far fa-trash-alt"></i> 
             <% end %>
         </td>

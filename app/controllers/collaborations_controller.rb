@@ -5,44 +5,45 @@ class CollaborationsController < ApplicationController
     
     def new
       @collaboration = Collaboration.new(collaboration_params)
-      @result = Result.find(@collaboration.result_id)
+      @result = @collaboration.result
     end
 
     def show
-      @target = Target.find(@result.target_id)
-      @user = User.find(@collaboration.user_id)
-      @collaboration_user = User.find(@result.user_id)
+      @target = @result.target
+      @user = @collaboration.user
+      @collaboration_user = @result.user
       @collaboration_comments = CollaborationComment.where(collaboration_id: @collaboration.id)
+      @collaboration_comment = CollaborationComment.new
     end
 
     def index
-      @collaborations = Collaboration.where(user_id: current_user.id)
+      @collaborations = current_user.collaborations
     end
 
     def edit
-      @user = User.find(@collaboration.user_id)
-      @collaboration_user = User.find(@result.user_id)
+      @user = @collaboration.user
+      @target = @result.target
+      @collaboration_user = @result.user
     end
   
     def destroy
       @collaboration.destroy
-      redirect_to user_collaborations_path(current_user)
+      redirect_to collaborations_path
     end
   
     def update
       @collaboration.update(update_collaboration_params)
-      redirect_to user_collaborations_path(current_user)
+      redirect_to collaborations_path
     end
   
 
     def create
       @collaboration = Collaboration.new(collaboration_params)
-      @result = Result.find(@collaboration.result_id)
-      @user = User.find(@result.user_id)
-      @collaboration.title = "#{current_user.name}と#{@user.name}"
+      @result = Result.find(params[:result_id])
+      @collaboration.title = "#{current_user.name}と#{@result.user.name}"
       @collaboration.save
 
-      render json: { url: user_result_collaboration_path(current_user, @result, @collaboration) }
+      render json: { url: collaboration_path(@collaboration) }
     end
 
     private
@@ -52,7 +53,7 @@ class CollaborationsController < ApplicationController
     end
 
     def set_result
-      @result = Result.find(@collaboration.result_id)
+      @result = @collaboration.result
     end
 
     def collaboration_params

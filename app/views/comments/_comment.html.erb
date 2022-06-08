@@ -5,7 +5,7 @@
     
     <% if logged_in? && current_user.own?(comment) %>
         <td class="action">
-            <%= link_to user_result_comment_path(current_user, result, comment), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
+            <%= link_to result_comment_path(result, comment), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-danger float-right' do %>
               <i class="far fa-trash-alt"></i> 
             <% end %>
         </td>

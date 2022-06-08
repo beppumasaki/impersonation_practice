@@ -1,24 +1,24 @@
 class CommentsController < ApplicationController
     def create
         @comment = Comment.new(comment_params)
-        @result = Result.find(@comment.result_id)
+        @result = @comment.result
         if @comment.save
-          redirect_to user_result_path(current_user, @result)
+          redirect_to result_path(@result)
         else
-          redirect_to user_results_path(current_user)
+          redirect_to results_path
         end
       end
 
       def destroy
         @comment = Comment.find(params[:id])
-        @result = Result.find(@comment.result_id)
+        @result = @comment.result
         @comment.destroy
-        redirect_to user_result_path(current_user, @result)
+        redirect_to result_path(@result)
 
       end
     
       private
       def comment_params
-        params.permit(:body, :result_id, :user_id)
+        params.require(:comment).permit(:body, :result_id, :user_id)
       end
 end

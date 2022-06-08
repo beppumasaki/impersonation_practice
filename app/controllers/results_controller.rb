@@ -4,24 +4,25 @@ class ResultsController < ApplicationController
   before_action :set_target, only: %i[show edit]
 
   def show
-    @user = User.find(@result.user_id)
+    @user = @result.user
     @comments = @result.comments
+    @comment = Comment.new
   end
 
   def index
-   @results = Result.where(user_id: current_user.id)
+   @results = current_user.results
   end
 
   def edit; end
 
   def destroy
     @result.destroy
-    redirect_to user_results_path(current_user)
+    redirect_to results_path
   end
 
   def update
     @result.update(update_result_params)
-    redirect_to user_results_path(current_user)
+    redirect_to results_path
   end
   
   def create

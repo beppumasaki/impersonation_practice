@@ -5,6 +5,6 @@
   <td><%=audio_tag("#{rank.impersonation_voice.url}", controls: true) %></td>
   <td class='align-middle'>
     <% user = User.find(rank.user_id) %>
-    <%= link_to t('defaults.show'), user_result_path(user, rank.id), class: 'btn btn-info' %>
+    <%= link_to t('defaults.show'), result_path(rank.id), class: 'btn btn-info' %>
   </td>
 </tr>
