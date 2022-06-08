@@ -1,8 +1,10 @@
 <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
-        <%= form_with url: user_result_collaboration_collaboration_comments_path(current_user, result, collaboration), id: 'new_collaboration_comment' do |f| %>
+        <%= form_with model: collaboration_comment, url: collaboration_collaboration_comments_path(collaboration), id: 'new_collaboration_comment' do |f| %>
             <%= f.label "コメント" %>
             <%= f.text_area :body, class: 'form-control mb-3', rows: 2 %>
+            <%= f.hidden_field :collaboration_id, :value => collaboration.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.submit 'コメントする', class: 'btn btn-primary' %>
         <% end %>
     </div>

@@ -12,7 +12,7 @@
         <div class="mt-4 mb-5">
          <button class = "btn btn-primary btn-lg" id="rec" >録音する</button>
          <button class = "btn btn-danger btn-lg d-none" id="result" >保存する</button>
-          <%= form_with url:user_result_collaborations_path(current_user, @result), id: "voiceform", local: true do |f| %>
+          <%= form_with url: result_collaborations_path(@result), id: "voiceform", local: true do |f| %>
             <%= f.hidden_field :result_id, :value => @result.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :collaboration_voice  %>

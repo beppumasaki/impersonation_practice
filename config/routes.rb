@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :targets do
-    resources :results, only: %i[create index show]
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
   get '/terms', to: 'static_pages#terms'
@@ -11,18 +8,23 @@ Rails.application.routes.draw do
   get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/impersonation-book/sitemaps/sitemap.xml.gz")
   get 'search_tag', to: 'targets#search_tag'
 
-  resources :users, only: %i[new create show edit update] do
-    resources :collaborations, only: %i[index]
-    resources :results, only: %i[index show edit update destroy] do
-      resources :collaborations, only: %i[create destroy update new show edit] do
-        resources :collaboration_comments, only: %i[create destroy]
-      end
-      resources :comments, only: %i[create destroy]
-    end
+  resources :users, only: %i[new create show edit update]
+
+  resources :targets do
+    resources :results, only: %i[create]
+  end
+
+  resources :results, only: %i[index show edit update destroy] do
+    resources :collaborations, only: %i[new create]
+    resources :comments, only: %i[create destroy]
+  end
+
+  resources :collaborations, only: %i[destroy update show edit index] do
+    resources :collaboration_comments, only: %i[create destroy]
   end
   
   resources :votes, only: %i[new create destroy index] do
-    resource :likes, only: [:create, :destroy]
+    resource :likes, only: %i[create destroy]
   end
 
   get 'login', to: 'user_sessions#new'
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
     resources :users, only: %i[index edit update show destroy]
     resources :targets, only: %i[create new index edit update show destroy]
     resources :tags, only: %i[create new index edit update destroy]
+    resources :results, only: %i[index]
+    resources :collaborations, only: %i[index]
   end
 
 end

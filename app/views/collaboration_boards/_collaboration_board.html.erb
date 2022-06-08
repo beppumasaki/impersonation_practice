@@ -6,6 +6,6 @@
       <p class="card-text">by <%= user.name %></p>
       <%=audio_tag("#{collaboration_board.collaboration_voice.url}", controls: true) %>
       <p class="card-text"><%= collaboration_board.body %></p>
-       <%= link_to "もっと見る", user_result_collaboration_path(current_user, result, collaboration_board), class: 'btn btn-info float-right' %>
+       <%= link_to "もっと見る", collaboration_path(collaboration_board), class: 'btn btn-info float-right' %>
     </div>
 </div>

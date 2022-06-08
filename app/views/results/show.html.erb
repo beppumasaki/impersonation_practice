@@ -6,9 +6,9 @@
       <article class="card">
         <div class="card-body">
           <% unless current_user.nil? %>
-            <%= link_to "コラボする", new_user_result_collaboration_path(current_user, @result), class: 'float-right btn btn-info' %>
+            <%= link_to "コラボする", new_result_collaboration_path(@result), class: 'float-right btn btn-info' %>
             <% if @result.user_id == current_user.id %>
-              <%= link_to edit_user_result_path(@user, @result), class: 'btn btn-primary float-right mr-2' do %>
+              <%= link_to edit_result_path(@result), class: 'btn btn-primary float-right mr-2' do %>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
             <% end %>

@@ -6,7 +6,7 @@
       <article class="card">
         <div class="card-body">
           <% if @collaboration.user_id == current_user.id %>
-            <%= link_to edit_user_result_collaboration_path(current_user, @result, @collaboration), class: 'btn btn-primary float-right mr-2' do %>
+            <%= link_to edit_collaboration_path(@collaboration), class: 'btn btn-primary float-right mr-2' do %>
               <i class="fa-regular fa-pen-to-square"></i>
             <% end %>
           <% end %>
@@ -14,7 +14,7 @@
             <div class='col-md-9'>
               <div class='title mb-5'>
                 <h2><%= @collaboration.title %></h2>
-                <p><%= @collaboration_user.name %>さんとのコラボ</p>
+                <p><%= @collaboration_user.name %>さんの<%= @target.name %>とのコラボ</p>
               </div>
               <%=audio_tag("#{@collaboration.collaboration_voice.url}", controls: true) %>
               <ul class="list-inline">
