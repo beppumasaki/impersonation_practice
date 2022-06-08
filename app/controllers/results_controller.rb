@@ -33,7 +33,7 @@ class ResultsController < ApplicationController
     response = @result.analyse(@target, @result)
     @result.judge(response, @target, @result)
     @result.save
-    render json: { url: target_result_url(@result.target_id, @result.id) }
+    render json: { url: result_url(@result) }
   end
 
   private
