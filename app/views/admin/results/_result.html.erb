@@ -1,0 +1,8 @@
+<tr>
+  <td class='align-middle'><%= result.id %></td>
+  <td class='align-middle td-pe-none'><%= result.user.name %></td>
+  <td class='align-middle'><%= l result.created_at, format: :short  %></td>
+  <td class='align-middle'><%= result.target.name %></td>
+  <td class='align-middle'><%= result.score %></td>
+  <td class='align-middle'><%= audio_tag("#{result.impersonation_voice.url}", controls: true)%></td>
+</tr>
