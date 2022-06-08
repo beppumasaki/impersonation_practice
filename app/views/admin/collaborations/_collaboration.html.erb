@@ -1,0 +1,8 @@
+<tr>
+  <td class='align-middle'><%= collaboration.id %></td>
+  <td class='align-middle td-pe-none'><%= collaboration.user.name %></td>
+  <td class='align-middle'><%= l collaboration.created_at, format: :short  %></td>
+  <td class='align-middle'><%= collaboration.result.target.name %></td>
+  <td class='align-middle'><%= collaboration.result.user.name %></td>
+  <td class='align-middle'><%= audio_tag("#{collaboration.collaboration_voice.url}", controls: true)%></td>
+</tr>

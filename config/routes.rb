@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :targets, only: %i[create new index edit update show destroy]
     resources :tags, only: %i[create new index edit update destroy]
     resources :results, only: %i[index]
+    resources :collaborations, only: %i[index]
   end
 
 end
