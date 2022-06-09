@@ -15,7 +15,6 @@ class CollaborationsController < ApplicationController
       @collaboration_user = @result.user
       @collaboration_comments = CollaborationComment.where(collaboration_id: @collaboration.id)
       @collaboration_comment = CollaborationComment.new
-      redirect_to root_path if current_user != @user && @collaboration.not_published?
     end
 
     def index
