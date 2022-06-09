@@ -1,12 +1,14 @@
 class ResultsController < ApplicationController
   skip_before_action :require_login, only: %i[show create]
   before_action :set_result, only: %i[show edit update destroy]
+  before_action :user_check, only: %i[edit update destroy]
   before_action :set_target, only: %i[show edit]
 
   def show
     @user = @result.user
     @comments = @result.comments
     @comment = Comment.new
+    redirect_to root_path if current_user != @user && @result.not_published?
   end
 
   def index
@@ -49,6 +51,11 @@ class ResultsController < ApplicationController
 
   def update_result_params
     params.require(:result).permit(:body, :state)
+  end
+
+  def user_check
+    @user = @result.user
+    redirect_to root_path if current_user != @user
   end
 
 end
