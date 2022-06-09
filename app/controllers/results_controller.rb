@@ -10,7 +10,7 @@ class ResultsController < ApplicationController
   end
 
   def index
-   @results = current_user.results
+    @results = current_user.results
   end
 
   def edit; end
@@ -26,13 +26,10 @@ class ResultsController < ApplicationController
   end
   
   def create
-    @result = Result.create(result_params)
+    @result = Result.new(result_params)
     @result.user_id = current_user.id if current_user
-    @target = Target.find(@result.target_id)
-    
-    response = @result.analyse(@target, @result)
-    @result.judge(response, @target, @result)
     @result.save
+
     render json: { url: result_url(@result) }
   end
 
@@ -46,7 +43,6 @@ class ResultsController < ApplicationController
     @target = Target.find(@result.target_id)
   end
 
-  #voiceに定義したURlがエンコード文字列では認識されないため、newではなくcreate。not null制約つけているので一時的にscoreに値を追加。
   def result_params
     params.permit(:target_id, :impersonation_voice, :score, :user_id)
   end
