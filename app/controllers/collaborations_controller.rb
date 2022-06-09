@@ -1,6 +1,7 @@
 class CollaborationsController < ApplicationController
    skip_before_action :require_login, only: %i[show]
    before_action :set_collaboration, only: %i[show edit update destroy]
+   before_action :user_check, only: %i[edit update destroy]
    before_action :set_result, only: %i[show edit]
     
     def new
@@ -14,6 +15,7 @@ class CollaborationsController < ApplicationController
       @collaboration_user = @result.user
       @collaboration_comments = CollaborationComment.where(collaboration_id: @collaboration.id)
       @collaboration_comment = CollaborationComment.new
+      redirect_to root_path if current_user != @user && @collaboration.not_published?
     end
 
     def index
@@ -62,5 +64,10 @@ class CollaborationsController < ApplicationController
 
     def update_collaboration_params
       params.require(:collaboration).permit(:title, :body, :state)
+    end
+
+    def user_check
+      @user = @collaboration.user
+      redirect_to root_path if current_user != @user
     end
 end
