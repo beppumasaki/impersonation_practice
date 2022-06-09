@@ -8,7 +8,6 @@ class ResultsController < ApplicationController
     @user = @result.user
     @comments = @result.comments
     @comment = Comment.new
-    redirect_to root_path if current_user != @user && @result.not_published?
   end
 
   def index
