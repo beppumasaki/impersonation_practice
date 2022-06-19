@@ -6,7 +6,6 @@ const downloadLink = document.getElementById('download');
 const playback = document.getElementById('play');
 const result = document.getElementById('result');
 const impersonation = document.getElementById('impersonationvoice');
-const start = document.getElementById("start")
 const rec = document.getElementById("rec")
 const stop = document.getElementById("stop")
 const play = document.getElementById("playid")
@@ -19,7 +18,6 @@ let audio_sample_rate = null;
 let scriptProcessor = null;
 let audioContext = null;
 let mediastreamsource = null;
-var timeout_id = null;
 
 // audio data
 let audioData = [];
@@ -174,7 +172,6 @@ let exportWAV = function (audioData) {
 
     let myURL = window.URL || window.webkitURL;
     let url = myURL.createObjectURL(audioBlob);
-    //ここでurlをバックエンド側に作成？その後、xhr.openでurlを取りに行ってる？
     downloadLink.href = url;
 };
 
