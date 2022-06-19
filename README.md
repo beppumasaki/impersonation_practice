@@ -74,4 +74,4 @@
 
 # **ER図** 
 
-[![Image from Gyazo](https://i.gyazo.com/2f54f97a28056079441a629aed000872.png)](https://gyazo.com/2f54f97a28056079441a629aed000872)
+[![Image from Gyazo](https://i.gyazo.com/259fb637350e682c79a115a88a533dd6.png)](https://gyazo.com/259fb637350e682c79a115a88a533dd6)
