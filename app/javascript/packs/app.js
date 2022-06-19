@@ -5,7 +5,6 @@ axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token'
 const downloadLink = document.getElementById('download');
 const playback = document.getElementById('play');
 const result = document.getElementById('result');
-const start = document.getElementById("start")
 const rec = document.getElementById("rec")
 const play = document.getElementById("playid")
 const notice = document.getElementById('notice');
@@ -18,7 +17,6 @@ let audio_sample_rate = null;
 let scriptProcessor = null;
 let audioContext = null;
 let mediastreamsource = null;
-var timeout_id = null;
 let countDownTime = null;
 let timeout = null;
 
