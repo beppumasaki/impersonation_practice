@@ -59,7 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave-audio'
 gem 'faraday'
 gem 'faraday-multipart'
-gem 'rest-client'
 gem 'sorcery'
 gem 'jquery-rails'
 gem 'fog-aws'

@@ -8,7 +8,7 @@ class Result < ApplicationRecord
 
    enum state: { not_published: 0, published: 1 }
 
-   def analyze
+    def analyze
       result = self
       target = self.target
 
