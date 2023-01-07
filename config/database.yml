@@ -84,6 +84,10 @@ test:
 #
 production:
   <<: *default
-  database: impersonation_practice_production
-  username: impersonation_practice
-  password: <%= ENV['IMPERSONATION_PRACTICE_DATABASE_PASSWORD'] %>     
+  # database: impersonation_practice_production
+  # username: impersonation_practice
+  # password: <%= ENV['IMPERSONATION_PRACTICE_DATABASE_PASSWORD'] %>
+  database: clcli6sj9000kbwquf2zu3613
+  username: clcli6sj8000ibwqu9nppghkk
+  password: <%= ENV['IMPERSONATION_PRACTICE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
