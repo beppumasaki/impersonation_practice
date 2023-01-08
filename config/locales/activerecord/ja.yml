@@ -41,3 +41,14 @@ ja:
       role:
         admin: "管理者"
         general: "一般"
+  errors:
+    messages:
+      record_invalid: "バリデーションに失敗しました: %{errors}"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "が空になっています"
+
